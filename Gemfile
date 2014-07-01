@@ -12,3 +12,11 @@ gemspec
 
 # To use debugger
 # gem 'debugger'
+
+gem 'bootstrap-sass', '~> 3.1.1'
+gem 'sass-rails',   '~> 4.0.1'
+gem 'uglifier', '~> 2.5.0'
+gem 'coffee-rails', '~> 4.0.1'
+
+#fontawesome
+gem 'font-awesome-rails'
