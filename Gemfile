@@ -16,5 +16,3 @@ gem 'jquery-rails'
 gem 'redis'
 gem 'puma'
 gem 'pg'
-gem "hiredis", "~> 0.4.5"
-gem "em-synchrony"

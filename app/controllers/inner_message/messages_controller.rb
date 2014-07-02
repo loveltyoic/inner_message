@@ -7,15 +7,19 @@ module InnerMessage
     def index
       response.headers['Content-Type'] = 'text/event-stream'
       redis = Redis.new
+      sse = SSE.new(response.stream, retry: 300, event: "message")
       redis.subscribe('default') do |on|
         on.message do |channel, message|
-          response.stream.write message
+          sse.write message
         end
       end
+      render nothing: true
+      
     rescue IOError
+      logger.info "Stream closed"
     ensure
       redis.quit
-      response.stream.close
+      sse.close
     end
 
     def create
