@@ -1,8 +1,19 @@
-= InnerMessage
+# InnerMessage
 
-- An inner message system for rails app.
+An inner message system for rails app.
 
-- HowTo
-  `gem install inner_message`
-  or add  `gem 'inner_message'` in Gemfile
-  and then `bundle install`
+## Installation
+
+Add this line to your application's Gemfile:
+
+    gem 'inner_message'
+
+And then execute:
+
+    $ bundle install
+
+Or install it yourself as:
+
+    $ gem install inner_message
+
+## Usage
