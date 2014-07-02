@@ -4,7 +4,7 @@ module InnerMessage
     after_save :publish_message_to_redis
     def publish_message_to_redis
       redis = Redis.new
-      redis.publish('default', { message: self.text }.to_json)
+      redis.publish('default', self.text)
     end
   end
 end
