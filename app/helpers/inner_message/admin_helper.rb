@@ -1,4 +1,4 @@
 module InnerMessage
-  module ApplicationHelper
+  module AdminHelper
   end
 end

@@ -1,5 +1,3 @@
-
-
 $(document).ready(function(){
   var source = new EventSource('/inner_message/messages');
 

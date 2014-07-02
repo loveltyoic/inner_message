@@ -8,13 +8,12 @@ module InnerMessage
       response.headers['Content-Type'] = 'text/event-stream'
       redis = Redis.new
       sse = SSE.new(response.stream, retry: 300, event: "message")
-      redis.subscribe('default') do |on|
+      redis.subscribe(params[:user]) do |on|
         on.message do |channel, message|
           sse.write message
         end
       end
-      render nothing: true
-      
+      render nothing: true      
     rescue IOError
       logger.info "Stream closed"
     ensure
@@ -23,13 +22,16 @@ module InnerMessage
     end
 
     def create
-      Message.create(message_params)
-      render json: { status: 'success' }
+      if MessageBox.send_message(message_params)
+        render json: { status: 'success' }
+      else
+        render json: { status: 'error', message: "#{params[:message][:to]} does not exist!"}
+      end      
     end
 
   private
     def message_params
-      params.require(:message).permit(:text)
+      params.require(:message).permit(:content, :to)
     end
   end
 end
