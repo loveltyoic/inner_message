@@ -1,5 +1,5 @@
 require "inner_message/engine"
-
+require "inner_message/messager"
 module InnerMessage
   mattr_accessor :user_class
 

@@ -22,6 +22,6 @@ module InnerMessage
       redis.quit
       sse.close
     end
-
+    
   end
 end

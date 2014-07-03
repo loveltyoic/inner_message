@@ -1,5 +1,4 @@
 module InnerMessage
-  module ApplicationHelper
-
+  module IframesHelper
   end
 end

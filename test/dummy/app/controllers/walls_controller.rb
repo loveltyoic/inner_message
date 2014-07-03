@@ -1,14 +1,15 @@
 class WallsController < ApplicationController
   def index
-    session[:current_user] = rand(10)
+    session[:current_user] = rand(1..10)
   end
 
   def create
-    if InnerMessage::MessageBox.send_message(message_params.merge!({from_id: session[:current_user]}))
-      render json: { status: 'success' }
+    current_user = Player.find(session[:current_user])
+    if current_user.send_message({to_id: rand(1..10), content: "Hello, I am code name #{current_user.id}"})
+      render json: {status: 'success'}
     else
-      render json: { status: 'error', message: "#{params[:message][:to_id]} does not exist!"}
-    end      
+      render json: {status: 'error'}
+    end
   end
 
   private

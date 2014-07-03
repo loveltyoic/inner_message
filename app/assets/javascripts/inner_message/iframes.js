@@ -1,5 +1,3 @@
-
-
 $(document).ready(function(){
   var source = new EventSource('/inner_message/messages');
 
@@ -18,15 +16,11 @@ $(document).ready(function(){
     $("#message-box ul").prepend(template(message.data));
   }; 
 
+
   var template = function(message) {
     var date = new Date();
     var time = date.toLocaleString(); 
     return '<li class="media"><div class="media-body"><h4 class="media-heading">'+time+'</h4>'+message+'</div></li>';
-  }
+  };
 
-  $("#submit").click(function(){
-    $.post('/walls', {message: {content: $("#message").val(), to_id: $("#to").val()}}, function(){
-      $("#message").val('');
-    });
-  }) 
 });
