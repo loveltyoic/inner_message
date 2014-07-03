@@ -25,7 +25,7 @@ $(document).ready(function(){
   }
 
   $("#submit").click(function(){
-    $.post('/inner_message/messages', {message: {content: $("#message").val(), to: $("#to").val()}}, function(){
+    $.post('/walls', {message: {content: $("#message").val(), to_id: $("#to").val()}}, function(){
       $("#message").val('');
     });
   }) 

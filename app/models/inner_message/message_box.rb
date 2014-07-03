@@ -1,15 +1,16 @@
 module InnerMessage
   class MessageBox < ActiveRecord::Base
+    
     belongs_to :user, class_name: InnerMessage.user_class.to_s
-    has_many :messages
+    has_many :messages, as: :messageable
 
     def self.send_message(params)
-      to = InnerMessage.user_class.find_by(InnerMessage.name_field.to_sym => params[:to])
-      if to
-        mb = MessageBox.find_or_create_by(user_id: to.id)
-        mb.messages.create params
-      end
-      to
+      to = InnerMessage.user_class.find(params[:to_id])
+      mb = to.message_box || to.create_message_box
+      mb.messages.create params
+    rescue ActiveRecord::RecordNotFound
+      false
     end
+
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702125235) do
+ActiveRecord::Schema.define(version: 20140703034135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,14 +24,15 @@ ActiveRecord::Schema.define(version: 20140702125235) do
 
   create_table "inner_message_messages", force: true do |t|
     t.text     "content"
-    t.string   "to"
-    t.integer  "message_box_id"
+    t.integer  "to_id"
+    t.integer  "from_id"
+    t.integer  "messageable_id"
+    t.string   "messageable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "senders", force: true do |t|
-    t.string   "nickname"
+  create_table "players", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end

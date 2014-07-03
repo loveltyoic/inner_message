@@ -1,3 +1,3 @@
 InnerMessage.configure do |config|
-  config.user_class = 'Player'
+  config.user_class = 'User'
 end

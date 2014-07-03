@@ -1,7 +1,7 @@
 require "inner_message/engine"
 
 module InnerMessage
-  mattr_accessor :user_class, :name_field
+  mattr_accessor :user_class
 
   class << self
     def configure
