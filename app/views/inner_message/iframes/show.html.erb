@@ -1,1 +1,10 @@
-<div id="message-box"><ul></ul></div>
+<div class="unread-count">
+  <span class="badge" data-bind="text: unread, click: toggleMessageBox"></span>
+</div>
+
+<div data-bind="foreach: messages, visible: showingMessageBox" class="message-list">
+  <div class="message">
+    <h4 data-bind="text: created_at"></h4>
+    <div data-bind="text: content"></div>
+  </div>
+</div>

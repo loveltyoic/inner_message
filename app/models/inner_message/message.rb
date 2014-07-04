@@ -9,7 +9,7 @@ module InnerMessage
     after_save :publish_message_to_redis
     def publish_message_to_redis
       redis = Redis.new
-      redis.publish("inner_message.#{self.to_id}", self.content)
+      redis.publish("inner_message.#{self.to_id}", self.to_json)
     end
   end
 end
