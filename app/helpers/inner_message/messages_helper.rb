@@ -1,7 +1,7 @@
 module InnerMessage
   module MessagesHelper
     def sign_in_user
-      session[:inner_message_current_user] = session[:current_user]
+      session[:inner_message_current_user] = session[InnerMessage.user_session_key]
     end
 
     def current_user

@@ -6,7 +6,7 @@ module InnerMessage
       has_one :message_box, class_name: 'InnerMessage::MessageBox', foreign_key: :user_id
     end
 
-    def get_message
+    def get_messages
       self.message_box.nil? ? self.create_message_box.messages : self.message_box.messages
     end
 

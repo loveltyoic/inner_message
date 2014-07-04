@@ -2,7 +2,7 @@ require "inner_message/engine"
 require "inner_message/messager"
 require "inner_message/view_helper"
 module InnerMessage
-  mattr_accessor :user_class
+  mattr_accessor :user_class, :user_session_key
 
   class << self
     def configure
