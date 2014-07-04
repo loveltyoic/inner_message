@@ -7,11 +7,11 @@ require "inner_message/version"
 Gem::Specification.new do |s|
   s.name        = "inner_message"
   s.version     = InnerMessage::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of InnerMessage."
-  s.description = "TODO: Description of InnerMessage."
+  s.authors     = ["LiZihe"]
+  s.email       = ["loveltyoic@gmail.com"]
+  s.homepage    = "https://github.com/loveltyoic/inner_message"
+  s.summary     = "Embedded message system for rails app."
+  s.description = "Embedded message system for rails app."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
