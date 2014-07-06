@@ -22,13 +22,11 @@ Since ActionController::Live used in inner_message, the webserver should be eith
 
 ## Usage
 
-1. rails g inner_message
+1. rails g inner_message:config
 2. rake inner_message:install:migrations
 3. rake db:migrate
 4. Update config/initializer/inner_message.rb with your app's config.
-5. in your user's model, suppose it named 'User'
-add `include InnerMessage::Messager`
-6. you could embed a message box provided by view helper, you could place it in your layout.
+5. you could embed a message box provided by view helper, you could place it in your layout.
 in your application_helper.rb file, `include InnerMessage::ViewHelper`.
 Then in your view's layout, add `<%= message_frame %>`.
 7. in routes, add `mount InnerMessage::Engine => "/inner_message"`
