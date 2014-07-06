@@ -5,5 +5,5 @@ InnerMessage.configure do |config|
   # After user signed in your app, you should store its id in session
   # like `session[:user_id] = user.id`
   # config the session key's name, in this example, it is called :user_id
-  config.user_session_key = :user_id
+  config.user_session_key = :current_user
 end

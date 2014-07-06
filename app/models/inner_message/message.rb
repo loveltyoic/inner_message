@@ -5,8 +5,15 @@ module InnerMessage
 
     validate :content, presense: true
     validate :to_id, presense: true
+    validate :from_id, presense: true
 
-    after_save :publish_message_to_redis
+    scope :unread, -> { where(read: false) }
+
+    def mark_as_read
+      self.update({read: true})
+    end
+
+    after_create :publish_message_to_redis
     def publish_message_to_redis
       redis = Redis.new
       redis.publish("inner_message.#{self.to_id}", self.to_json)
