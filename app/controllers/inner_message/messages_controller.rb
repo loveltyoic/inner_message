@@ -10,9 +10,13 @@ module InnerMessage
       response.headers['Content-Type'] = 'text/event-stream'
       redis = Redis.new
       sse = SSE.new(response.stream, retry: 300, event: "message")
-      redis.subscribe("inner_message.#{current_user}") do |on|
+      redis.subscribe(["inner_message.#{current_user}", "heartbeat"]) do |on|
         on.message do |channel, message|
-          sse.write message
+          if channel == 'heartbeat'
+            response.stream.write("event: heartbeat\ndata: heartbeat\n")
+          else
+            sse.write message
+          end
         end
       end
       render nothing: true      

@@ -9,7 +9,7 @@ module InnerMessage
       @string = 'I love ruby!'
     end
 
-    it 'should be set to unread when sending' do
+    it 'should set to unread after create' do
       sender.send_message({to_id: receiver.id, content: @string}).read.must_equal false
     end
 

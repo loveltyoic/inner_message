@@ -25,6 +25,10 @@ describe InnerMessage::Messager do
     receiver.get_messages.last.from_id.must_equal sender.id
   end
 
+  it 'return false if send to user not exists' do
+    sender.send_message({to_id: 400, content: 'Nobody receive this message'}).must_equal false
+  end
+
   it 'should publish message after send' do
     skip
     thread = Thread.new do 

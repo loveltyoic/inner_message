@@ -14,6 +14,18 @@ module InnerMessage
         ::ActionView::Base.send :include, InnerMessage::IframeHelper
       end
     end
+
+    initializer 'heartbeat' do |app|
+      $inner_redis = Redis.new
+
+      heartbeat_thread = Thread.new do
+        while true
+          $inner_redis.publish("heartbeat", "heartbeat")
+          sleep 5.seconds
+        end
+      end      
+    end
+
     config.after_initialize do 
       InnerMessage.user_class.class_eval do
         include InnerMessage::Messager
