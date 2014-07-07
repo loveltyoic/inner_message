@@ -11,8 +11,14 @@ class messageViewModel
         self.messages.push message
         self.unread(self.unread()+1)
 
+      source.addEventListener 'heartbeat', (e)->
+        console.log e.data
+
     @toggleMessageBox = ->
       self.showingMessageBox(!self.showingMessageBox())
+
+    @get_unread = -> 
+      
 
     @listen()
 

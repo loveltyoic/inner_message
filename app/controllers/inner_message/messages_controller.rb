@@ -1,4 +1,3 @@
-require_dependency "inner_message/application_controller"
 
 module InnerMessage
   class MessagesController < ApplicationController
@@ -9,13 +8,12 @@ module InnerMessage
     def index
       response.headers['Content-Type'] = 'text/event-stream'
       redis = Redis.new
-      sse = SSE.new(response.stream, retry: 300, event: "message")
       redis.subscribe(["inner_message.#{current_user}", "heartbeat"]) do |on|
         on.message do |channel, message|
           if channel == 'heartbeat'
-            response.stream.write("event: heartbeat\ndata: heartbeat\n")
+            response.stream.write("event: heartbeat\ndata: heartbeat\n\n")
           else
-            sse.write message
+            response.stream.write("event: message\ndata: #{message}\n\n")
           end
         end
       end
@@ -24,7 +22,7 @@ module InnerMessage
       logger.info "Stream closed"
     ensure
       redis.quit
-      sse.close
+      response.stream.close
     end
     
   end

@@ -11,7 +11,7 @@ module InnerMessage
         mount InnerMessage::Engine => "/inner_message"
       end
       ActiveSupport.on_load(:action_view) do
-        ::ActionView::Base.send :include, InnerMessage::IframeHelper
+        ::ActionView::Base.send :include, InnerMessage::ViewExtension
       end
     end
 

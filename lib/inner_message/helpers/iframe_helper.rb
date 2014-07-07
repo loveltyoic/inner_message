@@ -1,8 +1,15 @@
 module InnerMessage
-  module IframeHelper
-    include ::ActionView::Context
-    def message_frame
-      tag("iframe", frameborder: '0', height: '300', width: '300', src: '/inner_message/iframe')
+  module Helpers
+    class Iframe
+      include ::ActionView::Context
+
+      def initialize(template)
+        @template = template
+      end
+
+      def to_s
+        @template.render :partial => 'inner_message/iframes/messages'
+      end
     end
   end
 end

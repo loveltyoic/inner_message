@@ -21,7 +21,7 @@ development:
   host: localhost
   username: im
   password: 1988224
-  pool: 5
+  pool: 2
   timeout: 5000
 
 test:
