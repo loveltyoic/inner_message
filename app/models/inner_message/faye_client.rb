@@ -7,7 +7,6 @@ module InnerMessage
         message = { channel: channel, data: params }
         uri = URI.parse(FAYE_CONFIG["faye_server"])
         Net::HTTP.post_form(uri, message: message.to_json)
-        binding.pry
     end
   end
 end

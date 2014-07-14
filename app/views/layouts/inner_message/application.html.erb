@@ -12,7 +12,7 @@
 <%= yield %>
 <script>
   APP = {};
-  APP.current_user = <%= session[:inner_message_current_user] %>
+  APP.current_user_token = "<%= @token.secret %>"
 </script>
 </body>
 </html>

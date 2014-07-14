@@ -11,13 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140706104227) do
+ActiveRecord::Schema.define(version: 20140714125757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "inner_message_message_boxes", force: true do |t|
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "inner_message_message_tokens", force: true do |t|
+    t.integer  "user_id"
+    t.string   "secret"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

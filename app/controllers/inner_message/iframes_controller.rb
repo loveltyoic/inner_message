@@ -6,6 +6,7 @@ module InnerMessage
     before_action :sign_in_user
     
     def show
+      @token = MessageToken.generate(session[:inner_message_current_user])
     end
   end
 end
