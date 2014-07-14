@@ -13,10 +13,9 @@ module InnerMessage
       self.update({read: true})
     end
 
-    after_create :publish_message_to_redis
-    def publish_message_to_redis
-      redis = Redis.new
-      redis.publish("inner_message.#{self.to_id}", self.to_json)
+    after_create :publish_message_to_faye
+    def publish_message_to_faye
+      FayeClient.send(self.to_id.to_s, {message: self.content, from_id: from_id})
     end
   end
 end

@@ -25,3 +25,9 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'redis'
 gem 'puma'
 gem 'pg'
+
+gem 'faye'
+gem 'thin'
+gem 'eventmachine'
+
+gem 'pry', group: :development

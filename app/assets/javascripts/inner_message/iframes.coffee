@@ -4,23 +4,17 @@ class messageViewModel
     self.messages = ko.observableArray([])
     self.unread = ko.observable(0)
     self.showingMessageBox = ko.observable(false)
-    @listen = ->
-      source = new EventSource('/inner_message/messages')
-      source.onmessage = (event)->
-        message = JSON.parse event.data
-        self.messages.push message
-        self.unread(self.unread()+1)
-
-      source.addEventListener 'heartbeat', (e)->
-        console.log e.data
+    @init = ->
+      faye = new Faye.Client("http://127.0.0.1:8080/faye")
+      faye.subscribe "/5", (json) ->
+        console.log json
 
     @toggleMessageBox = ->
       self.showingMessageBox(!self.showingMessageBox())
 
     @get_unread = -> 
       
-
-    @listen()
+    @init()
 
 
 $(document).ready ->
