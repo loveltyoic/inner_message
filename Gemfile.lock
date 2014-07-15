@@ -2,6 +2,10 @@ PATH
   remote: .
   specs:
     inner_message (0.0.1)
+      eventmachine
+      faye
+      rails (>= 4.0.0)
+      thin
 
 GEM
   remote: https://rubygems.org/
