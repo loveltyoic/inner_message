@@ -9,15 +9,13 @@ app = Faye::RackAdapter.new(:mount => '/faye', :timeout => 25)
 class FayeAuth
   def incoming(message, callback)
     p message
-    if message['channel'] !~ %r{^/meta/}
-      if message["data"]
-        if message["data"]['token'] != FAYE_TOKEN
-          # Setting any 'error' against the message causes Faye to not accept it.
-          message['error'] = "Faye authorize faild."
-        else
-          message["data"].delete('token')
-        end
-      end
+    return callback.call(message) if message['channel'] =~ %r{^/meta/}
+    return callback.call(message) unless message["data"]
+    if message["data"]['token'] != FAYE_TOKEN
+      # Setting any 'error' against the message causes Faye to not accept it.
+      message['error'] = "Faye authorize faild."
+    else
+      message["data"].delete('token')
     end
     callback.call(message)
   end

@@ -9,11 +9,16 @@ class messageViewModel
       faye.subscribe "/#{window.APP.current_user_token}", (json) ->
         self.messages.push json
         self.unread(self.unread()+1)
+      @get_unread()
 
     @toggleMessageBox = ->
       self.showingMessageBox(!self.showingMessageBox())
 
     @get_unread = -> 
+      $.getJSON('/inner_message/messages')
+        .done (data) ->
+          self.messages(data)
+          self.unread(data.length)
       
     @init()
 

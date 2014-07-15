@@ -16,10 +16,6 @@ Or install it yourself as:
 
     $ gem install inner_message
 
-## Webservers
-
-Since ActionController::Live used in inner_message, the webserver should be either Rainbows!, Puma, or Thin. 
-
 ## Usage
 
 1. rails g inner_message:config

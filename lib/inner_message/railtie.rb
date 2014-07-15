@@ -27,9 +27,7 @@ module InnerMessage
     # end
 
     config.after_initialize do 
-      InnerMessage.user_class.class_eval do
-        include InnerMessage::Messager
-      end
+      InnerMessage.user_class.send :include, InnerMessage::Messager
     end
   end
 end
