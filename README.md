@@ -23,10 +23,15 @@ Since ActionController::Live used in inner_message, the webserver should be eith
 ## Usage
 
 1. rails g inner_message:config
+2. rails g inner_message:faye
 2. rake inner_message:install:migrations
 3. rake db:migrate
 4. Update config/initializer/inner_message.rb with your app's config.
-5. use `<%= message_frame %>` to embed a message iframe.
+5. Config faye and thin for faye server
+ - in /faye_server, edit thin.yml
+ - in /config, edit faye_config.yml
+6. Start faye server: `cd /faye_server && thin start -C thin.yml`
+5. use `<%= message_frame %>` to embed a message iframe in you page.
 9. After user signed in, you should assign session[:current_user] to signed user's id, inner_message use this to bind user.
 10. Now, in your app, user has ability to send and get messages.
 
