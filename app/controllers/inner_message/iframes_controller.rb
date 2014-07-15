@@ -6,7 +6,8 @@ module InnerMessage
     before_action :sign_in_user
     
     def show
-      @token = MessageToken.generate(session[:inner_message_current_user])
+      @token = MessageToken.generate(current_user)
+      @faye_config = 
     end
   end
 end
