@@ -7,7 +7,7 @@ module InnerMessage
     
     def show
       @token = MessageToken.generate(current_user)
-      @faye_config = 
+      @faye_server = YAML.load_file(File.join(Rails.root, 'config', 'faye_config.yml'))[ENV['RACK_ENV']]['faye_server']
     end
   end
 end

@@ -5,15 +5,18 @@ class messageViewModel
     self.unread = ko.observable(0)
     self.showingMessageBox = ko.observable(false)
 
-    @markAsRead = (message) ->
-      console.log message
+    @markAsRead = (message, event) ->
+      return if message.read
       $.post("/inner_message/messages/#{message.id}/read")
         .done (data) ->
+          message.read = true
+          $(event.currentTarget).removeClass('unread')
           self.unread(self.unread()-1)
 
     @init = ->
-      faye = new Faye.Client("http://127.0.0.1:8080/faye")
+      faye = new Faye.Client("#{window.APP.faye_server}")
       faye.subscribe "/#{window.APP.current_user_token}", (json) ->
+        json['read'] = false
         self.messages.push json
         self.unread(self.unread()+1)
       @get_unread()
