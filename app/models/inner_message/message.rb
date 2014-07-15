@@ -15,7 +15,7 @@ module InnerMessage
 
     after_create :publish_message_to_faye
     def publish_message_to_faye
-      FayeClient.send(MessageToken.get_secret(self.to_id), {content: self.content, from_id: from_id, created_at: created_at})
+      FayeClient.send(MessageToken.get_secret(self.to_id), {content: self.content, from_id: from_id, created_at: created_at, id: self.id})
     end
   end
 end

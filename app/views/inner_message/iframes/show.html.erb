@@ -3,7 +3,7 @@
 </div>
 
 <div data-bind="foreach: messages, visible: showingMessageBox" class="message-list">
-  <div class="message">
+  <div class="message" data-bind="click: $parent.markAsRead">
     <h4 data-bind="text: created_at"></h4>
     <div data-bind="text: content"></div>
   </div>

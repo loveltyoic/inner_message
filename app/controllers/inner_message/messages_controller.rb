@@ -9,5 +9,16 @@ module InnerMessage
       render json: unread
     end
 
+    def read
+      message = Message.find(params[:id])
+      if message.to_id == current_user 
+        message.mark_as_read
+        render json: {status: 'success'}
+      else 
+        render json: {message: 'Forbidden'}, status: 403
+      end
+
+    end
+
   end
 end
