@@ -21,6 +21,10 @@
     border-bottom: 1px solid #eee;
     width: 300px;
   }
+  .message.unread {
+    background-color: #0CB6E8;
+    color: white;
+  }
 }
 .unread-count {
   .badge {

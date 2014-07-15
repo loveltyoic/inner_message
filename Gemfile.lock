@@ -156,5 +156,5 @@ DEPENDENCIES
   rails
   redis
   sass-rails (~> 4.0.0)
-  thin (= 1.5.0)
+  thin
   uglifier (>= 1.3.0)
