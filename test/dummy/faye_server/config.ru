@@ -8,6 +8,7 @@ FAYE_TOKEN = FAYE_CONFIG["faye_token"]
 app = Faye::RackAdapter.new(:mount => '/faye', :timeout => 25)
 class FayeAuth
   def incoming(message, callback)
+    p message
     if message['channel'] !~ %r{^/meta/}
       if message["data"]
         if message["data"]['token'] != FAYE_TOKEN

@@ -3,7 +3,6 @@ require 'test_helper'
 describe InnerMessage::Messager do 
   let(:sender) { Player.create }
   let(:receiver) { Player.create }
-  let(:redis) { Redis.new }
 
   before do
     sender.send_message({to_id: receiver.id, content: 'I love ruby!'})
@@ -27,21 +26,6 @@ describe InnerMessage::Messager do
 
   it 'return false if send to user not exists' do
     sender.send_message({to_id: 400, content: 'Nobody receive this message'}).must_equal false
-  end
-
-  it 'should publish message after send' do
-    skip
-    thread = Thread.new do 
-      redis.subscribe("inner_message.#{receiver.id}") do |on|
-        on.message do |channel, message|
-          message_content = message
-          redis.quit
-        end
-      end
-    end
-    sender.send_message({to_id: receiver.id, content: 'I love ruby!'})
-    thread.join
-    message_content.must_equal 'I love ruby!'
   end
 
 end

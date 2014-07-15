@@ -27,7 +27,7 @@ gem 'puma'
 gem 'pg'
 
 gem 'faye'
-gem 'thin'
+gem 'thin', '1.5.0'
 gem 'eventmachine'
 
 gem 'pry', group: :development
