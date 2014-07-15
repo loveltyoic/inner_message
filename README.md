@@ -32,8 +32,9 @@ Since ActionController::Live used in inner_message, the webserver should be eith
 
 ## Example
 ```ruby
-user = User.first
 user.send_message({to_id: User.last.id, content: 'Wooha, I love ruby!'})
-another_user = User.last
+#get all messages
 another_user.get_messages
+#or get unread messages
+another_user.get_messages.unread
 ```
