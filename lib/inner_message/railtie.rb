@@ -13,6 +13,7 @@ module InnerMessage
       ActiveSupport.on_load(:action_view) do
         ::ActionView::Base.send :include, InnerMessage::ViewExtension
       end
+
     end
 
     # initializer 'heartbeat' do |app|
@@ -27,6 +28,12 @@ module InnerMessage
     # end
 
     config.after_initialize do 
+      begin; require 'active_record'; rescue LoadError; end
+      if defined? ::ActiveRecord
+        require 'inner_message/models/message'
+        require 'inner_message/models/message_box'
+        require 'inner_message/models/message_token'
+      end
       InnerMessage.user_class.send :include, InnerMessage::Messager
     end
   end
