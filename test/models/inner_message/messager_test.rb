@@ -1,8 +1,8 @@
 require 'test_helper'
 
 describe InnerMessage::Messager do 
-  let(:sender) { Player.create }
-  let(:receiver) { Player.create }
+  let(:sender) { InnerMessage.user_class.create }
+  let(:receiver) { InnerMessage.user_class.create }
 
   before do
     sender.send_message({to_id: receiver.id, content: 'I love ruby!'})

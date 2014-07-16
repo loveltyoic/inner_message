@@ -1,9 +1,9 @@
 require 'test_helper'
 module InnerMessage
   describe Message do 
-    let(:sender) { Player.create }
-    let(:receiver) { Player.create }
-    let(:another_receiver) { Player.create }
+    let(:sender) { InnerMessage.user_class.create }
+    let(:receiver) { InnerMessage.user_class.create }
+    let(:another_receiver) { InnerMessage.user_class.create }
 
     before do
       @string = 'I love ruby!'

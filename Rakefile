@@ -1,4 +1,5 @@
 begin
+  ENV['BUNDLE_GEMFILE'] = File.expand_path('../test/mongoid_app/Gemfile', __FILE__) if ENV['TEST_MODEL'] == 'Mongoid'
   require 'bundler/setup'
 rescue LoadError
   puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
