@@ -1,6 +1,5 @@
 require "inner_message/config"
 require "inner_message/railtie"
-require "inner_message/engine"
-require "inner_message/messager"
 require "inner_message/helpers/iframe_helper"
 require "inner_message/helpers/view_extension"
+require "inner_message/engine"

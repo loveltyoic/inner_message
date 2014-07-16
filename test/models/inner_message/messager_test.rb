@@ -25,7 +25,7 @@ describe InnerMessage::Messager do
   end
 
   it 'return false if send to user not exists' do
-    sender.send_message({to_id: 400, content: 'Nobody receive this message'}).must_equal false
+    sender.send_message({to_id: 10000, content: 'Nobody receive this message'}).must_equal false
   end
 
 end

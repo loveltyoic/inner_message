@@ -28,11 +28,18 @@ module InnerMessage
     # end
 
     config.after_initialize do 
-      begin; require 'active_record'; rescue LoadError; end
       if defined? ::ActiveRecord
-        require 'inner_message/models/message'
-        require 'inner_message/models/message_box'
-        require 'inner_message/models/message_token'
+        require 'inner_message/models/active_record_message'
+        require 'inner_message/models/active_record_message_box'
+        require 'inner_message/models/active_record_message_token'
+        require 'inner_message/models/active_record_messager'        
+      end
+      begin; require 'mongoid'; rescue LoadError; end
+      if defined? ::Mongoid
+        require 'inner_message/models/mongoid_message'
+        require 'inner_message/models/mongoid_message_box'
+        require 'inner_message/models/mongoid_messager'        
+        require 'inner_message/models/mongoid_message_token'                
       end
       InnerMessage.user_class.send :include, InnerMessage::Messager
     end

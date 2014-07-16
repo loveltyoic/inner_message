@@ -1,0 +1,7 @@
+Creating scope :unread. Overwriting existing method InnerMessage::Message.unread.
+Creating scope :unread. Overwriting existing method InnerMessage::Message.unread.
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 3.4360ms
+  MOPED: 127.0.0.1:27017 QUERY        database=mongoid_app_test collection=users selector={"$query"=>{}, "$orderby"=>{:_id=>-1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.4810ms
+  MOPED: 127.0.0.1:27017 INSERT       database=mongoid_app_test collection=users documents=[{"_id"=>BSON::ObjectId('53c63d94417070ded0000000')}] flags=[]
+                         COMMAND      database=mongoid_app_test command={:getlasterror=>1, :w=>1} runtime: 11.7300ms
+  MOPED: 127.0.0.1:27017 QUERY        database=mongoid_app_test collection=users selector={"$query"=>{}, "$orderby"=>{:_id=>-1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.9740ms

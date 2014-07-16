@@ -1,7 +1,12 @@
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
 ENV["RACK_ENV"] = "test"
-require File.expand_path("../dummy/config/environment.rb",  __FILE__)
+if ENV["TEST_MODEL"] == "Mongoid"
+  require File.expand_path("../mongoid_app/config/environment.rb",  __FILE__)
+else
+  require File.expand_path("../dummy/config/environment.rb",  __FILE__)
+end
+
 require "rails/test_help"
 require 'minitest/autorun'
 Rails.backtrace_cleaner.remove_silencers!

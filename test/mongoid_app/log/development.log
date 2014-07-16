@@ -1,0 +1,15 @@
+Creating scope :unread. Overwriting existing method InnerMessage::Message.unread.
+Creating scope :unread. Overwriting existing method InnerMessage::Message.unread.
+Creating scope :unread. Overwriting existing method InnerMessage::Message.unread.
+Creating scope :unread. Overwriting existing method InnerMessage::Message.unread.
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 4.4190ms
+  MOPED: 127.0.0.1:27017 COMMAND      database=mongoid_app_development command={:count=>"users", :query=>{}} runtime: 1.0100ms
+  MOPED: 127.0.0.1:27017 QUERY        database=mongoid_app_development collection=users selector={"_id"=>400} flags=[] limit=0 skip=0 batch_size=nil fields=nil runtime: 0.5630ms
+  MOPED: 127.0.0.1:27017 INSERT       database=mongoid_app_development collection=users documents=[{"_id"=>BSON::ObjectId('53c60d03417070d2cc000000')}] flags=[]
+                         COMMAND      database=mongoid_app_development command={:getlasterror=>1, :w=>1} runtime: 119.5270ms
+Creating scope :unread. Overwriting existing method InnerMessage::Message.unread.
+Creating scope :unread. Overwriting existing method InnerMessage::Message.unread.
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 3.1480ms
+  MOPED: 127.0.0.1:27017 QUERY        database=mongoid_app_development collection=users selector={"$query"=>{}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.6480ms
+  MOPED: 127.0.0.1:27017 QUERY        database=mongoid_app_development collection=users selector={"_id"=>23} flags=[] limit=0 skip=0 batch_size=nil fields=nil runtime: 0.5970ms
+Creating scope :unread. Overwriting existing method InnerMessage::Message.unread.
