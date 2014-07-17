@@ -6,5 +6,11 @@
   <div class="message" data-bind="click: $parent.markAsRead, css: {'unread': !read}" >
     <h4 data-bind="text: created_at"></h4>
     <div data-bind="text: content"></div>
+    <button data-bind="click: $parent.showReply">Reply</button>
+  </div>
+  <div class="reply-box">
+    <textarea data-bind="attr: {'id': id}"></textarea>
+    <button data-bind="click: $parent.reply">Submit</button>
+    <button>Cancel</button>
   </div>
 </div>

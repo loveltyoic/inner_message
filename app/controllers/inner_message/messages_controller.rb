@@ -17,5 +17,15 @@ module InnerMessage
       end
     end
 
+    def reply
+      message = Message.find(params[:id])
+      if message.to_id == current_user_id
+        @reply_message = InnerMessage.user_class.find(current_user_id).send_message({to_id: message.from_id, content: params[:content]})
+        render json: {status: 'success'}
+      else
+        render json: {message: 'Forbidden'}, status: 403
+      end
+    end
+
   end
 end

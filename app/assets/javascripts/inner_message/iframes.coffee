@@ -30,6 +30,12 @@ class messageViewModel
           self.messages(data)
           self.unread(data.length)
       
+    @reply = (message) ->
+      content = $("#"+message.id).val()
+      $.post("/inner_message/messages/#{message.id}/reply", {content: content})
+        .done (data) ->
+          console.log data
+
 
     @init()
 

@@ -30,4 +30,5 @@ gem 'pry', group: :development
 
 group :test do
   gem 'capybara'
+  gem 'capybara-webkit'
 end
