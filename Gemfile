@@ -27,3 +27,7 @@ gem 'puma'
 gem 'pg'
 
 gem 'pry', group: :development
+
+group :test do
+  gem 'capybara'
+end

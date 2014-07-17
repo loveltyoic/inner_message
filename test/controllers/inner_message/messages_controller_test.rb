@@ -18,13 +18,13 @@ module InnerMessage
       msg = @sender.send_message({to_id: @user.id, content: 'I love ruby'})
       get :read, use_route: :inner_message, id: msg.id
       assert_equal msg.reload.read, true
+      assert_response :success
     end
 
     test "cannot read other's message" do
       @another = InnerMessage.user_class.create
       msg = @sender.send_message({to_id: @another.id, content: 'I love ruby'})
       get :read, use_route: :inner_message, id: msg.id
-      p response
       assert_equal response.status, 403
     end
   end

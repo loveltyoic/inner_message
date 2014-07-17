@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class WallsControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
+  # test "visit" do 
+  #   get :index
+  #   assert_response :success
   # end
 end
