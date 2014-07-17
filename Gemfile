@@ -12,7 +12,7 @@ gemspec
 
 # To use debugger
 # gem 'debugger'
-gem "rails"
+
 gem 'jquery-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -25,9 +25,5 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'redis'
 gem 'puma'
 gem 'pg'
-
-gem 'faye'
-gem 'thin'
-gem 'eventmachine'
 
 gem 'pry', group: :development

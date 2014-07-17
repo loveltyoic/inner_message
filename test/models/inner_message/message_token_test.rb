@@ -5,7 +5,7 @@ module InnerMessage
 
     it "should generate token" do
       MessageToken.generate(user.id)
-      user.message_token.wont_be_nil
+      user.reload.message_token.wont_be_nil
     end
 
     it "should get token by user id" do

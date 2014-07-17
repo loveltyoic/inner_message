@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/mongoid/mongoid.git
+  revision: 1f8e12c5b03da1c9bd49bab12d86bef969868fb3
+  specs:
+    mongoid (4.0.0)
+      activemodel (~> 4.0)
+      moped (~> 2.0.0)
+      origin (~> 2.1)
+      tzinfo (>= 0.3.37)
+
 PATH
   remote: ../../
   specs:
@@ -85,11 +95,6 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     minitest (4.7.5)
-    mongoid (4.0.0)
-      activemodel (~> 4.0)
-      moped (~> 2.0.0)
-      origin (~> 2.1)
-      tzinfo (>= 0.3.37)
     moped (2.0.0)
       bson (~> 2.2)
       connection_pool (~> 2.0)
@@ -156,7 +161,7 @@ DEPENDENCIES
   inner_message!
   jbuilder (~> 1.2)
   jquery-rails
-  mongoid (~> 4.0.0)
+  mongoid!
   rails (= 4.0.3)
   sass-rails (~> 4.0.0)
   turbolinks
