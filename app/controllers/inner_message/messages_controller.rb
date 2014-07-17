@@ -3,8 +3,8 @@ module InnerMessage
   class MessagesController < ApplicationController
 
     def index
-      unread = InnerMessage.user_class.find(current_user_id).get_messages.unread      
-      render json: unread
+      @unread = InnerMessage.user_class.find(current_user_id).get_messages.unread      
+      render json: @unread
     end
 
     def read
@@ -15,7 +15,6 @@ module InnerMessage
       else 
         render json: {message: 'Forbidden'}, status: 403
       end
-
     end
 
   end
