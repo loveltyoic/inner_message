@@ -4,6 +4,9 @@ module InnerMessage
 
     def index
       @unread = InnerMessage.user_class.find(current_user_id).get_messages.unread      
+    rescue
+      @unread = []
+    ensure
       render json: @unread
     end
 

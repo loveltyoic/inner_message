@@ -14,6 +14,12 @@ module InnerMessage
       assert_includes assigns(:unread), msg
     end
 
+    test "not signed in user" do 
+      session[InnerMessage.user_session_key] = nil
+      get :index, use_route: :inner_message
+      assert_empty assigns(:unread)
+    end
+
     test "read message" do
       msg = @sender.send_message({to_id: @receiver.id, content: 'I love ruby'})
       get :read, use_route: :inner_message, id: msg.id
