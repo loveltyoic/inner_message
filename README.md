@@ -45,11 +45,15 @@ Or install it yourself as:
 
 - To start faye server, cd to /faye_server
 ```
-  `thin start -C thin.yml`
+    thin start -C thin.yml
 ```
-- use `<%= message_frame %>` to embed a message iframe in you page.
 
 ## Usage
+
+### ViewHelper
+In view page, use `<%= message_frame %>` to embed a message iframe.
+
+### Send && Get Messages
 ```ruby
 user.send_message({to_id: User.last.id, content: 'Wooha, I love ruby!'})
 #get all messages
