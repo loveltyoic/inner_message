@@ -17,37 +17,37 @@ Or install it yourself as:
     $ gem install inner_message
 
 ## Configuration
-1. Generate config file
+- Generate config file
 ```
     rails g inner_message:config
 ```  
 
-2. Generate faye config files
+- Generate faye config files
 ```
     rails g inner_message:faye
 ```
 
-3. Install migrations
+- Install migrations
 ```
     rake inner_message:install:migrations
 ```
-4. Migrate
+- Migrate
 ```
     rake db:migrate
 ```
 
-5. Update config/initializer/inner_message.rb to fit your app.
+- Update config/initializer/inner_message.rb to fit your app.
 
 
-6. Config faye and thin for faye server
+- Config faye and thin for faye server
  - in /faye_server, edit thin.yml
  - in /config, edit faye_config.yml
 
-7. To start faye server, cd to /faye_server
+- To start faye server, cd to /faye_server
 ```
   `thin start -C thin.yml`
 ```
-8. use `<%= message_frame %>` to embed a message iframe in you page.
+- use `<%= message_frame %>` to embed a message iframe in you page.
 
 ## Usage
 ```ruby
