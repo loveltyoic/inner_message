@@ -53,7 +53,7 @@ Or install it yourself as:
 ### ViewHelper
 In view page, use `<%= message_frame %>` to embed a message iframe.
 
-### Send && Get Messages
+### Send & Get
 ```ruby
 user.send_message({to_id: User.last.id, content: 'Wooha, I love ruby!'})
 #get all messages
