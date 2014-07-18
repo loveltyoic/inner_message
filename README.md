@@ -17,19 +17,36 @@ Or install it yourself as:
     $ gem install inner_message
 
 ## Configuration
+1. Generate config file
 
-1. rails g inner_message:config
-2. rails g inner_message:faye
-3. rake inner_message:install:migrations
-4. rake db:migrate
-5. Update config/initializer/inner_message.rb with your app's config.
+rails g inner_message:config
+
+2. Generate faye config files
+
+rails g inner_message:faye
+
+
+3. Install migrations
+
+rake inner_message:install:migrations
+
+4. Migrate
+
+rake db:migrate
+
+
+5. Update config/initializer/inner_message.rb to fit your app.
+
+
 6. Config faye and thin for faye server
  - in /faye_server, edit thin.yml
  - in /config, edit faye_config.yml
-7. Start faye server: `cd /faye_server && thin start -C thin.yml`
+
+7. Start faye server
+
+in '/faye_server', run `thin start -C thin.yml`
+
 8. use `<%= message_frame %>` to embed a message iframe in you page.
-9. After user signed in, you should assign session[:current_user] to signed user's id, inner_message use this to bind user.
-10. Now, in your app, user has ability to send and get messages.
 
 ## Usage
 ```ruby
