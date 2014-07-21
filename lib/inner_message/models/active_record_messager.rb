@@ -25,5 +25,10 @@ module InnerMessage
       InnerMessage::Subscription.create({user_id: self.id, message_channel_id: channel_id})
     end
 
+    def get_broadcasts
+      channels = self.message_channels.include(:broadcasts)
+      
+    end
+
   end
 end
