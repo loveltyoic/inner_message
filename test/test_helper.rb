@@ -5,11 +5,16 @@ if ENV["TEST_MODEL"] == "Mongoid"
   require File.expand_path("../mongoid_app/config/environment.rb",  __FILE__)
 else
   require File.expand_path("../dummy/config/environment.rb",  __FILE__)
+  require 'capybara/rails'
+  class ActionDispatch::IntegrationTest
+    # Make the Capybara DSL available in all integration tests
+    include Capybara::DSL
+  end
+  Capybara.default_driver = :webkit
 end
 
 require "rails/test_help"
 require 'minitest/autorun'
-require 'capybara/rails'
 Rails.backtrace_cleaner.remove_silencers!
 
 # Load support files
@@ -20,8 +25,3 @@ if ActiveSupport::TestCase.method_defined?(:fixture_path=)
   ActiveSupport::TestCase.fixture_path = File.expand_path("../fixtures", __FILE__)
 end
 
-class ActionDispatch::IntegrationTest
-  # Make the Capybara DSL available in all integration tests
-  include Capybara::DSL
-end
-Capybara.default_driver = :webkit

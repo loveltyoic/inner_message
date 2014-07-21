@@ -37,7 +37,7 @@ module InnerMessage
     test "reply message to sender" do
       msg = @sender.send_message({to_id: @receiver.id, content: 'I love ruby'})
       post :reply, use_route: :inner_message, id: msg.id, content: 'I love ruby, too'
-      assert_includes @sender.reload.get_messages.unread, assigns(:reply_message)
+      assert_includes @sender.get_messages.unread, assigns(:reply_message)
     end
 
     test "cannot reply message sent to others" do 

@@ -16,23 +16,9 @@ module InnerMessage
 
     end
 
-    # initializer 'heartbeat' do |app|
-    #   $inner_redis = Redis.new
-
-    #   heartbeat_thread = Thread.new do
-    #     while true
-    #       $inner_redis.publish("heartbeat", "heartbeat")
-    #       sleep 5.seconds
-    #     end
-    #   end      
-    # end
-
     config.after_initialize do 
       if defined? ::ActiveRecord
-        require 'inner_message/models/active_record_message'
-        require 'inner_message/models/active_record_message_box'
-        require 'inner_message/models/active_record_message_token'
-        require 'inner_message/models/active_record_messager'        
+        Dir.glob(File.expand_path('../models', __FILE__)+'/active_record_*.rb') { |file| require file }
       end
       begin; require 'mongoid'; rescue LoadError; end
       if defined? ::Mongoid
