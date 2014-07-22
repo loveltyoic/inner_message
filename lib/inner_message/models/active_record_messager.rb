@@ -26,8 +26,11 @@ module InnerMessage
     end
 
     def get_broadcasts
-      channels = self.message_channels.include(:broadcasts)
-      
+      channels = self.message_channels.includes(:broadcasts)
+      channels.inject({}) do |broadcasts, channel|
+        broadcasts[channel.name] = channel.broadcasts.recent(10)
+        broadcasts
+      end
     end
 
   end
