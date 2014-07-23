@@ -3,14 +3,21 @@
 </div>
 
 <div data-bind="foreach: messages, visible: showingMessageBox" class="message-list">
-  <div class="message" data-bind="click: $parent.markAsRead, css: {'unread': !read}" >
-    <h4 data-bind="text: created_at"></h4>
-    <div data-bind="text: content"></div>
-    <button data-bind="click: $parent.showReply">Reply</button>
-  </div>
-  <div class="reply-box">
-    <textarea data-bind="attr: {'id': id}"></textarea>
-    <button data-bind="click: $parent.reply">Submit</button>
-    <button>Cancel</button>
+  <div class="conversation">
+    <div class="media" data-bind="click: $parent.markAsRead, css: {'unread': !read}">
+      <small class="author"><a href="#" title="" class="strong">Jane Doe</a></small>
+      <div class="media-object pull-left"><%= image_tag 'inner_message/face.png', class: "img-circle"%></div>
+      <div class="media-body">
+        <blockquote>
+          <small class="date"><cite data-bind="text: $parent.formatTime(created_at)"></cite></small>
+          <p data-bind="text: content"></p>
+        </blockquote>
+      </div>
+    </div>
+    <div class="reply-box">
+      <textarea data-bind="attr: {'id': id}"></textarea>
+      <button data-bind="click: $parent.reply">Submit</button>
+      <button>Cancel</button>
+    </div>
   </div>
 </div>

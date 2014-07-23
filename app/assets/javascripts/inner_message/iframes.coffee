@@ -36,6 +36,9 @@ class messageViewModel
         .done (data) ->
           console.log data
 
+    @formatTime = (created_at) ->
+      time = new Date(created_at)
+      time.toLocaleTimeString()
 
     @init()
 
