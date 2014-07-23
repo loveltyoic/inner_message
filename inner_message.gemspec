@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency "faye"
   s.add_dependency "thin"
   s.add_dependency "eventmachine"
+  s.add_dependency "redis"
 
   # s.add_development_dependency "sqlite3"
 end
