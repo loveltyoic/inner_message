@@ -1,14 +1,20 @@
 module InnerMessage
   class Railtie < ::Rails::Railtie
     initializer 'inner_message' do |app|
+      
       app.routes.draw do
         mount InnerMessage::Engine => "/inner_message"
       end
+
       ActiveSupport.on_load(:action_view) do
         ::ActionView::Base.send :include, InnerMessage::ViewExtension
       end
 
-      $inner_redis = Redis.new
+      config_file = File.join(Rails.root, 'config', 'inner_message_config.yml')
+      if File.exists? config_file
+        ::InnerMessage::CONFIG = YAML.load_file(config_file)[ENV['RACK_ENV']]      
+        $inner_redis = Redis.new(host: CONFIG['redis']['host'], port: CONFIG['redis']['port'], db: CONFIG['redis']['db'])
+      end
 
     end
 

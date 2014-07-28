@@ -23,5 +23,10 @@ module InnerMessage
       mm = sender.send_message({to_id: another_receiver.id, content: @string})
       another_receiver.get_messages.unread.count.must_equal 1
     end
+
+    it 'have from user' do 
+      msg = sender.send_message({to_id: receiver, content: @string})
+      msg.from.must_equal sender
+    end
   end
 end

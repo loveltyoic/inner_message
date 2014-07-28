@@ -38,10 +38,11 @@ Or install it yourself as:
 
 - Update config/initializer/inner_message.rb to fit your app.
 
+- Edit config/inner_message_config.yml if necessary.
+
 
 - Config faye and thin for faye server
- - in /faye_server, edit thin.yml
- - in /config, edit faye_config.yml
+ - Edit /faye_server/thin.yml
 
 - To start faye server, cd to /faye_server
 ```
