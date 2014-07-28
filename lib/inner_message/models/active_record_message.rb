@@ -1,6 +1,7 @@
 module InnerMessage
   class Message < ActiveRecord::Base
     belongs_to :messageable, polymorphic: true
+    belongs_to :from, class_name: InnerMessage.user_class.to_s
 
     validate :content, presense: true
     validate :to_id, presense: true
