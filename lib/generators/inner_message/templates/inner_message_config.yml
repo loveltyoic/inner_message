@@ -1,0 +1,19 @@
+defaults: &defaults
+  faye: 
+    server: "http://127.0.0.1:8080/faye"
+    client_url: "http://127.0.0.1:8080/faye"
+    token: "123456"
+  redis: 
+    host: 127.0.0.1
+    port: 6379
+    db: 1
+
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
