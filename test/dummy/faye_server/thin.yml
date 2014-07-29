@@ -10,4 +10,4 @@ require: []
 max_persistent_conns: 14048
 environment: development
 servers: 1
-daemonize: false
+daemonize: true

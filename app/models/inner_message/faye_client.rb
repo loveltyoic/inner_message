@@ -6,7 +6,7 @@ module InnerMessage
       Thread.new {
         params[:token] = CONFIG["faye"]["token"]
         message = {channel: '/'+channel, data: params}
-        uri = URI.parse(FAYE_CONFIG["faye"]["server"])
+        uri = URI.parse(CONFIG["faye"]["server"])
         Net::HTTP.post_form(uri, message: message.to_json)
       }
     end
