@@ -31,10 +31,17 @@ class messageViewModel
           self.unread(data.length)
       
     @reply = (message) ->
-      content = $("#"+message.id).val()
+      textarea = $("#message-"+message.id+" .reply-box textarea")
+      content = textarea.val()
+      
       $.post("/inner_message/messages/#{message.id}/reply", {content: content})
         .done (data) ->
           console.log data
+          textarea.val('')
+          textarea.parent().fadeOut()
+
+    @showReply = (message) ->
+      $("#message-"+message.id+" .reply-box").show()
 
     @formatTime = (created_at) ->
       time = new Date(created_at)
