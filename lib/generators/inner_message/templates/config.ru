@@ -2,8 +2,8 @@ require 'faye'
 Faye::WebSocket.load_adapter('thin')
 # change you access token
 
-FAYE_CONFIG = YAML.load_file("../config/faye_config.yml")[ENV['RACK_ENV']]
-FAYE_TOKEN = FAYE_CONFIG["faye_token"]
+FAYE_CONFIG = YAML.load_file("../config/inner_message_config.yml")[ENV['RACK_ENV']]['faye']
+FAYE_TOKEN = FAYE_CONFIG["token"]
 
 app = Faye::RackAdapter.new(:mount => '/faye', :timeout => 25)
 class FayeAuth

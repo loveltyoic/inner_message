@@ -2,14 +2,14 @@ require 'test_helper'
 
 class FeatureTest < ActionDispatch::IntegrationTest
   test 'visit root' do
-    skip
+    # skip
 
     visit('/')
     assert_selector 'iframe'
   end
 
   test 'add unread message count' do 
-    skip
+    # skip
 
     visit('/')
     visit('/inner_message/iframe')

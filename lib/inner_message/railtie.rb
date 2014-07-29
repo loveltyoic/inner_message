@@ -1,6 +1,7 @@
 module InnerMessage
   class Railtie < ::Rails::Railtie
     initializer 'inner_message' do |app|
+      ENV['RACK_ENV'] ||= 'development'
       
       app.routes.draw do
         mount InnerMessage::Engine => "/inner_message"
