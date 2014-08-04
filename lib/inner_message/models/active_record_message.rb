@@ -3,9 +3,9 @@ module InnerMessage
     belongs_to :messageable, polymorphic: true
     belongs_to :from, class_name: InnerMessage.user_class.to_s
 
-    validate :content, presense: true
-    validate :to_id, presense: true
-    validate :from_id, presense: true
+    validates :content, presense: true
+    validates :to_id, presense: true, numericality: { only_integer: true }
+    validates :from_id, presense: true, numericality: { only_integer: true }
 
     scope :unread, -> { where(read: false) }
 

@@ -2,7 +2,7 @@ module InnerMessage
   class Broadcast < ActiveRecord::Base
     belongs_to :message_channel
 
-    validate :message_channel_id, presense: true
+    validates :message_channel_id, presense: true
 
     after_create :publish_to_faye
     after_create :store_id_in_redis
