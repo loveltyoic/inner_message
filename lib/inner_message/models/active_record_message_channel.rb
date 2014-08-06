@@ -4,6 +4,6 @@ module InnerMessage
     has_many :subscriptions
     has_many :broadcasts
 
-    validates :name, presense: true
+    validates :name, presence: true
   end
 end
