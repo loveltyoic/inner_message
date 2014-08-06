@@ -31,15 +31,15 @@ module InnerMessage
     end
 
     it 'get all broadcasts from channel' do 
-      3.times { |i| channel.broadcasts.create(content: "broadcast No.#{i}") }
+      3.times { |i| channel.send_broadcast("test", "broadcast No.#{i}") }
       subscriber.subscribe_channel(channel.id)
       subscriber.get_broadcasts_by_channel_id(channel.id).count.must_equal 3
     end
 
     it 'get unread broadcasts' do 
       subscriber.subscribe_channel(channel.id)
-      unread_1 = channel.broadcasts.create(content: 'broadcast_1')
-      unread_2 = channel.broadcasts.create(content: 'broadcast_2')
+      unread_1 = channel.send_broadcast("title 1", 'broadcast_1')
+      unread_2 = channel.send_broadcast("title 2", 'broadcast_2')
 
       subscriber.get_unread_broadcasts_by_channel_id(channel.id).count.must_equal 2
       unread_1.read_by_user(subscriber.id)
@@ -47,7 +47,7 @@ module InnerMessage
     end
 
     it 'get nothing from unsubscribed channel' do 
-      channel.broadcasts.create(content: "User could not read this if he/she doesn't subscribe.")
+      channel.send_broadcast('Not Seen', "User could not read this if he/she doesn't subscribe.")
       subscriber.get_broadcasts_by_channel_id(channel.id).must_be_nil
     end
 

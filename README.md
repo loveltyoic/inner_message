@@ -62,3 +62,18 @@ another_user.get_messages
 #or get unread messages
 another_user.get_messages.unread
 ```
+####Broadcast and Channel
+```ruby
+channel = InnerMessage::MessageChannel.create(name: 'test')
+#send broadcast
+channel.send_broadcast(title, content)
+#user can subscribe to channel
+user.subscribe_channel(channel.id)
+#user can unsubscribe channel
+user.unsubscribe_channel(channel.id)
+#user get broadcasts from subscribed channel
+user.get_broadcasts_by_channel_id(channel.id)
+user.get_unread_broadcasts_by_channel_id(channel.id)
+
+
+

@@ -5,5 +5,10 @@ module InnerMessage
     has_many :broadcasts
 
     validates :name, presence: true
+
+    def send_broadcast(title, content)
+      broadcasts.create(title: title, content: content)
+    end
+
   end
 end

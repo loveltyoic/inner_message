@@ -4,7 +4,7 @@ module InnerMessage
   describe Broadcast do
     before do
       @channel = InnerMessage::MessageChannel.create(name: 'test')
-      @message = @channel.broadcasts.create(content: 'Test!')
+      @message = @channel.send_broadcast('Test', 'This is a test broadcast!')
       @user = InnerMessage.user_class.create
       @user.subscribe_channel(@channel.id)
     end

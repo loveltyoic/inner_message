@@ -3,6 +3,8 @@ module InnerMessage
     belongs_to :message_channel
 
     validates :message_channel_id, presence: true
+    validates :title, presence: true
+    validates :content, presence: true
 
     after_create :publish_to_faye
     after_create :store_id_in_redis
