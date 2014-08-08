@@ -3,7 +3,7 @@ module InnerMessage
   describe Messager do 
     let(:sender) { InnerMessage.user_class.create }
     let(:receiver) { InnerMessage.user_class.create }
-    let(:channel) { MessageChannel.create(name: 'test') }
+    let(:channel) { create(:message_channel) }
     let(:subscriber) { InnerMessage.user_class.create }
 
     before do
