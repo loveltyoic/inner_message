@@ -1,5 +1,5 @@
 <div class="unread-count">
-  <span class="badge" data-bind="text: unread, click: toggleMessageBox"></span>
+  <span class="badge" data-bind="text: unread, click: toggleMessageBox, css: { alert: unread()!='0' }"></span>
 </div>
 
 <div data-bind="foreach: messages, visible: showingMessageBox" class="message-list">
@@ -16,8 +16,8 @@
     </div>
     <div class="reply-box">
       <textarea></textarea>
-      <button data-bind="click: $parent.reply">Submit</button>
-      <button>Cancel</button>
+      <button data-bind="click: $parent.reply">回复</button>
+      <button data-bind="click: $parent.cancelReply">取消</button>
     </div>
   </div>
 </div>

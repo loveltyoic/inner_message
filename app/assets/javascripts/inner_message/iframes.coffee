@@ -22,6 +22,13 @@ class messageViewModel
       @get_unread()
 
     @toggleMessageBox = ->
+      container = $(window.parent.document.getElementById('iframe-container'))
+
+      if(self.showingMessageBox())
+        container.css('height', '30px')
+      else
+        container.css('height', '100%')
+
       self.showingMessageBox(!self.showingMessageBox())
 
     @get_unread = -> 
@@ -36,9 +43,15 @@ class messageViewModel
       
       $.post("/inner_message/messages/#{message.id}/reply", {content: content})
         .done (data) ->
-          console.log data
-          textarea.val('')
-          textarea.parent().fadeOut()
+          self.resetReply(message)
+
+    @cancelReply = (message) ->
+      self.resetReply(message)
+
+    @resetReply = (message) ->
+      textarea = $("#message-"+message.id+" .reply-box textarea")
+      textarea.val('')
+      textarea.parent().fadeOut()
 
     @showReply = (message) ->
       $("#message-"+message.id+" .reply-box").show()
