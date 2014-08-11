@@ -3,7 +3,7 @@ require 'test_helper'
 module InnerMessage
   describe Broadcast do
     before do
-      @channel = InnerMessage::MessageChannel.create(name: 'test')
+      @channel = create(:message_channel)
       @message = @channel.send_broadcast('Test', 'This is a test broadcast!')
       @user = InnerMessage.user_class.create
       @user.subscribe_channel(@channel.id)

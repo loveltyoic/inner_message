@@ -4,7 +4,7 @@ module InnerMessage
   describe Subscription do
     before do
       @user = InnerMessage.user_class.create
-      @channel = MessageChannel.create(name: 'test')
+      @channel = create(:message_channel)
       @user.subscribe_channel(@channel.id)
     end    
 

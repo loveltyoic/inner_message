@@ -352,6 +352,10 @@ img.img-circle {
 }
 .reply-box {
   display: none;
+  padding: 10px;
+  button {
+    margin-top: 10px;
+  }
 }
 .reply-box textarea {
   -webkit-appearance: none;
@@ -465,16 +469,9 @@ img.img-circle {
   height: 30px;
   letter-spacing: normal;
   line-height: 18px;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  margin-right: 0px;
-  margin-top: 0px;
   overflow-x: visible;
   overflow-y: visible;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
+  padding: 5px 10px;
   text-align: center;
   text-indent: 0px;
   text-shadow: none;
@@ -484,5 +481,23 @@ img.img-circle {
   width: auto;
   word-spacing: 0px;
   writing-mode: lr-tb;
+}
+.badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  background-color: #777;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.alert {
+  background-color: #F55306;
 }
 
