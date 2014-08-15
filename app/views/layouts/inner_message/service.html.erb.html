@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>InnerMessage</title>
+  <%= stylesheet_link_tag    "inner_message/application", media: "all" %>
+  <%= javascript_include_tag "inner_message/application" %>
+  <script src="<%= @faye_server %>/client.js"></script>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+<script>
+  APP = {};
+  APP.current_visitor_token = "<%= @token.secret %>";
+  APP.faye_server = "<%= @faye_server%>";
+</script>
+</body>
+</html>

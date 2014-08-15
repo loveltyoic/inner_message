@@ -174,7 +174,7 @@ DEPENDENCIES
   capybara
   capybara-webkit
   coffee-rails (~> 4.0.0)
-  factory_girl_rails
+  factory_girl_rails (~> 4.0)
   inner_message!
   jquery-rails
   launchy

@@ -2,7 +2,7 @@ module InnerMessage
   module Messager
     extend ActiveSupport::Concern
 
-    included do 
+    included do
       has_one :message_box, class_name: 'InnerMessage::MessageBox', foreign_key: :user_id
       has_one :message_token, class_name: 'InnerMessage::MessageToken', foreign_key: :user_id
       has_many :message_channels, class_name: 'InnerMessage::MessageChannel', through: :subscriptions
@@ -18,7 +18,7 @@ module InnerMessage
       mb = to.message_box || to.create_message_box
       mb.messages.create params.merge!({from_id: self.id})
     rescue ActiveRecord::RecordNotFound
-      false            
+      false
     end
 
     def subscribe_channel(channel_id)
@@ -43,14 +43,18 @@ module InnerMessage
       end
     end
 
-    private 
+    def session_key
+      MessageToken.get_secret(self.id)
+    end
+
+    private
     def check_subscription(channel_id)
       subscription = InnerMessage::Subscription.where({user_id: self.id, message_channel_id: channel_id}).first
       if subscription
         yield
       else
         nil
-      end      
+      end
     end
 
 

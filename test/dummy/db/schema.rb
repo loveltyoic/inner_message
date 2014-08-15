@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140806084057) do
+ActiveRecord::Schema.define(version: 20140815091046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,11 @@ ActiveRecord::Schema.define(version: 20140806084057) do
   create_table "inner_message_subscriptions", force: true do |t|
     t.integer "user_id"
     t.integer "message_channel_id"
+  end
+
+  create_table "inner_message_talkers", force: true do |t|
+    t.string "type"
+    t.string "session_key"
   end
 
   create_table "players", force: true do |t|
