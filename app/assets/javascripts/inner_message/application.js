@@ -13,4 +13,4 @@
 
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require inner_message/knockout-3.1.0

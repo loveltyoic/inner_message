@@ -4,6 +4,7 @@
   <title>InnerMessage</title>
   <%= stylesheet_link_tag    "inner_message/application", media: "all" %>
   <%= javascript_include_tag "inner_message/application" %>
+  <script src="<%= asset_path 'inner_message/chat.js' %>"></script>
   <script src="<%= @faye_server %>/client.js"></script>
   <%= csrf_meta_tags %>
 </head>
@@ -12,8 +13,8 @@
 <%= yield %>
 <script>
   APP = {};
-  APP.current_visitor_token = "<%= @token.secret %>";
-  APP.faye_server = "<%= @faye_server%>";
+  APP.current_visitor_token = "<%= @visitor.session_key %>";
+  APP.faye_server = "<%= @faye_server %>";
 </script>
 </body>
 </html>

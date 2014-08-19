@@ -4,6 +4,7 @@
   <title>InnerMessage</title>
   <%= stylesheet_link_tag    "inner_message/application", media: "all" %>
   <%= javascript_include_tag "inner_message/application" %>
+  <script src="<%= asset_path 'inner_message/iframes.js' %>"></script>
   <script src="<%= @faye_server %>/client.js"></script>
   <%= csrf_meta_tags %>
 </head>

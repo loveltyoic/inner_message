@@ -1,0 +1,239 @@
+<div class="clickdesk clickdesk_cdw_j">
+  <div class="cd-bubble clickdesk_bubble" style="margin: 0px 10px; left: auto; right: 0px; width: auto !important; -webkit-animation: dissolve;" data-bind="visible: !chatIsShowing(), click: toggleChat">
+
+    <a class="cd-eye-catcher" onclick="return false;" style="margin: 0px auto; width: auto; height: auto; top: 0px; line-height: 0em !important; position: relative !important; background-image: none !important; display: none; background-position: initial initial !important; background-repeat: initial initial !important;">
+      <img src="">
+      <span id="clickdesk_close_eye_catcher_image" onclick="CLICKDESK_CHAT_WINDOW_UI.hide_eye_catcher(event);return false;">x</span>
+    </a>
+    <a class="cd-bar" onclick="return false;" style="padding-left: 10px;padding-right: 28px;width: auto;text-decoration: none!important;text-align: left!important;">获取帮助</a>
+
+  </div>
+</div>
+<div id="clickdesk_container" class="clickdesk_chat clickdesk clickdesk_cdw_j" data-bind="visible: chatIsShowing()">
+
+ <div id="clickdesk_frame_container">
+  <div id="clickdeskchat_container" style="z-index:2147483638!important;">
+   <div id="clickdesk_popup" class="cd-chat-inner clickdesk_b cd-chat-content loaded min" style="bottom:0px;position:fixed;z-index:2147483638;margin: 10px 0px;
+   left: auto;right: 0px !important;" >
+   <div id="clickdesk_header" class="cd-chat-inner-top" style="">
+    <div class="cd-chat-inner-fig"></div>
+    <div class="cd-header-left" style=""> <span id="cd_agent_name" style="z-index:100 !important;" title="Can we help?">Can we help?</span> <dfn style="display:none!important;">Customer Support Manager</dfn>
+      <div id="social_nw_fallow_image" style="display: none;">
+
+
+        <a href="" class="twitter-share-button">Tweet</a>
+        <a href="" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false" data-width="100px">Follow</a>
+
+
+      </div>
+    </div>
+    <div class="cd-widget-controls">
+
+     <span class="cd-minus-btn"><a id="clickdesk_min" class="sprite-icons-icon-minimize" onclick="return false;" title="Minimize"></a></span>
+     <span class="cd-pop-out" id="clickdesk_popout_container" style="display: inline-block !important;"><a id="clickdesk_popout" title="Popout"></a></span>
+     <span class="cd-close-btn"><a id="clickdesk_close" class="sprite-icons-icon-close" onclick="return false;" title="Close"></a></span>
+
+   </div>
+ </div><div class="cd-form-sec" id="ClickdeskprechatForm" style="display: none; padding: 0px !important;">
+
+
+ <div class="cd-form-header" style="padding: 0px!important;">We are online. Chat with us.</div>
+ <dfn style="padding: 0px 0px 5px 0px!important;">Please enter your name and email address to begin chatting with us.</dfn>
+ <ul>
+
+
+
+  <li>
+    <input type="text" placeholder="Name" id="cd_prechat_name" maxlength="50" class="" style="border-color: rgb(204, 204, 204);">
+  </li>
+
+  <li>
+    <input type="email" placeholder="Email" id="cd_prechat_email" maxlength="50" class="" style="border-color: rgb(204, 204, 204);">
+  </li>
+
+
+
+  <li>
+    <textarea cols="0" rows="0" id="cd_prechat_msg" required="required" placeholder="Message" class="" style="border-color: rgb(204, 204, 204);"></textarea>
+  </li>
+
+  <li id="cd_valid_email" class="cd-errordiv" style="display: none;"></li>
+
+
+  <li class="clickdesk-button"><input type="submit" id="cd_prechat_button" class="clickdesk_next" value="Initiate Chat"></li>
+
+</ul>
+
+    </div><div class="cd-form-sec" id="ClickdeskhelpdeskForm" style="display: none; position: relative; padding: 0px !important;">
+    <big style="display: none;position: absolute;top: 40%;text-align: center!important;margin-left: 35%!important;"><img src=""></big>
+
+
+    <div class="cd-form-header" style="padding: 0px!important;">Create Ticket</div>
+    <dfn style="padding: 0px 0px 5px 0px!important;">You can create your support ticket by providing your name, email address and message.</dfn>
+
+    <ul>
+
+
+      <li>
+        <input type="text" id="cd_helpdesk_name" placeholder="Name" maxlength="50" required="required" class="" style="border-color: rgb(204, 204, 204);">
+      </li>
+      <li>
+        <input type="email" placeholder="Email" id="cd_helpdesk_email" maxlength="50" required="required" class="" style="border-color: rgb(204, 204, 204);">
+      </li>
+      <li>
+        <textarea cols="0" rows="0" id="cd_helpdesk_msg" required="required" placeholder="Enter Message" class="" style="border-color: rgb(204, 204, 204);"></textarea>
+      </li>
+      <li id="helpdesk_valid_email" style="display: none;" class="cd-errordiv"></li>
+
+
+
+      <li class="clickdesk-button"><input type="submit" id="cd_helpdesk_submit" class="clickdesk_next" value="Submit"></li>
+    </ul>
+
+
+    </div><div class="cd-form-sec" id="ClickdeskofflineForm" style="display: block; position: relative !important; padding: 0px !important;">
+
+
+    <div class="cd-form-header" style="padding: 0px!important;"></div>
+    <dfn style="padding: 0px 0px 5px 0px!important;">Please provide your contact details to assist you better.</dfn>
+
+    <ul>
+
+
+      <li>
+        <input type="text" placeholder="Name" id="cd_offline_name" maxlength="50" required="required" class="" style="border-color: rgb(204, 204, 204);">
+      </li>
+
+      <li>
+        <input type="email" placeholder="Email" id="cd_offline_email" maxlength="50" required="required" class="" style="border-color: rgb(204, 204, 204);">
+      </li>
+
+
+      <li>
+        <textarea cols="0" rows="0" id="cd_offline_msg" required="required" placeholder="Message" class="" style="border-color: rgb(204, 204, 204);"></textarea>
+      </li>
+
+  <li id="offline_valid_email" class="cd-errordiv" style="display: none;">Please fill the required fields</li>
+
+
+  <li class="clickdesk-button"><input type="submit" id="cd_offline_button" class="clickdesk_next" value="Send Message"></li>
+
+</ul>
+
+      <div id="cd_loading" style="display: none; position: absolute !important; right: 17% !important; top: -8px !important; font-weight: bold !important; background-color: rgb(222, 222, 222) !important; padding: 0px 4px 2px !important; font-size: 11px !important; border-top-left-radius: 0px !important; border-top-right-radius: 0px !important; border-bottom-right-radius: 5px !important; border-bottom-left-radius: 5px !important;">Sending...</div>
+    </div><div id="clickdeskchat_social_template" class="" style="display: none;">
+
+    <big style="display: none;"><img src=""></big>
+    <div id="clickdesk_twitter" style="display: none;">
+
+    </div>
+
+
+
+  </div><div class="cd-form-sec" id="emailChatToVisitorForm" style="display: none; padding: 0px !important;">
+
+
+  <div class="cd-form-header" style="padding: 0px!important;">Email me this chat transcript</div>
+  <dfn style="padding: 0px 0px 5px 0px!important;">Please enter your name and email to receive the full transcript after the end of the chat session.</dfn>
+
+  <ul style="margin-bottom:0px !important;">
+    <li>
+      <input type="text" placeholder="Name" id="cd-sendEmailToVistorName" maxlength="50" class="" style="border-color: rgb(204, 204, 204);">
+    </li>
+
+    <li>
+      <input type="email" placeholder="Email" id="cd-sendEmailToVistorEmail" required="required" maxlength="50" class="" style="border-color: rgb(204, 204, 204);">
+    </li>
+
+    <li id="emailChatToVisitor_valid_email" style="display:none;color:red;margin-left: 6px;"></li>
+
+
+    <li style="margin-top:10px !important;"><input type="submit" id="emailChatTsToVisitor_submit" class="clickdesk_next" value="Send"></li>
+    <li style="display: none;"><input type="submit" id="cd_emailToVistitor_cancel" class="clickdesk_next" value="Cancel"></li>
+    <li style="margin:0px !important;"><a id="cd_emailToVistitor_acl" style="margin:4px 13px 0px 0px;font-weight:bold!important;font-size:12px!important;cursor: pointer;border-bottom: 1px dotted #999 !important;">Cancel</a></li>
+
+    <li id="cd_emailToVistitor_status" class="cd-errordiv"></li>
+
+
+  </ul>
+
+    </div><div class="cd-form-sec" id="ClickdeskofflinethxMsg" style="display: none; padding: 0px !important;">
+    <div class="ClickDeskpreChatForm" style="z-index:50!important;">
+      <div align="center" style="text-align: center;display:none;"><img src=""></div>
+      <div style="margin-top:15px !important;font-weight: bold;text-align:left !important;font-size:13px !important;color:!important;" id="ClickdeskofflinethxMsgName"></div>
+      <dfn style="margin-top:5px !important;font-size:13px !important;line-height:18px !important;color:#404040!important;min-height:80px !important" id="ClickdeskofflinethxMsgVal">Thanks for contacting us. We are currently unavailable to chat. We have received your message and will get back to you shortly.</dfn>
+      <div>
+            </div>
+          </div>
+        </div> <div id="clickdesk_chat_session" class="cd-chat-content" style="display: none; position: relative;">
+
+        <div id="clickdesk_chat_messages" class="cd-comment-area">
+
+          <ul id="clickdesk_session" style="border-bottom-width: 1px !important; border-bottom-style: solid !important; border-bottom-color: rgb(234, 232, 219) !important; display: none;"></ul>
+
+
+        </div>
+        <div class="cd-list-sec">
+
+          <div class="cd-list-sec-left" style="min-width: 60px!important;">
+            <ul>
+              <li><a id="cd_voice" class="sprite-icons-icon-first" onclick="return false;"></a></li>
+              <li><a id="cd_send_email_to_visitor" class="sprite-icons-icon-mail" onclick="return false;"></a></li>
+              <li><a id="cd_smile" class="sprite-icons-icon-smiley" onclick="return false;"></a></li>
+                <li><input type="file" name="cd_upload" multiple="multiple" id="cd_upload" class="" onchange="clickdesk_upload_File(this)" style="display: none; border-color: rgb(204, 204, 204);"></li>
+                <li style="   display: none;"><a class="" id="cd_rating" onclick="return false;">0</a></li>
+              </ul>
+              <div id="clickdesk_smilediv" style="display: none; position: absolute; width: 120px; z-index: 1 !important; margin-left: 3px !important; top: 75px !important;">
+                <div>
+                  <span class="cd-smiley-container cd-Smile"></span><span class="cd-smiley-container cd-Laugh"></span><span class="cd-smiley-container cd-Cool"></span><span class="cd-smiley-container cd-Counter"></span>
+                  <span class="cd-smiley-container cd-Wink"></span><span class="cd-smiley-container cd-Cheeky"></span><span class="cd-smiley-container cd-Sweating"></span><span class="cd-smiley-container cd-Crying"></span>
+                  <span class="cd-smiley-container cd-Angry"></span><span class="cd-smiley-container cd-Giggle"></span><span class="cd-smiley-container cd-Allforyou"></span><span class="cd-smiley-container cd-Hmm"></span>
+                  <span class="cd-smiley-container cd-Heart"></span><span class="cd-smiley-container cd-Star"></span><span class="cd-smiley-container cd-Yes"></span><span class="cd-smiley-container cd-No"></span>
+                  <div style="text-align:left;border-top: 1px solid whiteSmoke;padding: 2px;height:22px;">
+                   <div id="cd_set_smilyName" style="color:white!important;padding-left: 7px;float:left!important;"></div>
+                   <div id="cd_set_smilySymbol" style="color:white!important;margin-right: 12px;float:right!important;"></div>
+                 </div>
+               </div>
+             </div>
+           </div>
+           <div class="cd-list-sec-left" style="font-size: 11px!important;min-width: 70px!important;max-width: 90px!important;padding-top: 3px;display:none;">
+            <div id="clickdesk_editing_noti" style="display:none;"><span></span></div>
+          </div>
+          <div class="cd-list-sec-right">
+            <ul id="cd_user_rating">
+              <li><a rel="1" class="cd-undone sprite-icons-star-half" onclick="return false;"></a></li>
+              <li><a rel="2" class="cd-undone sprite-icons-star-half" onclick="return false;"></a></li>
+              <li><a rel="3" class="cd-undone sprite-icons-star-half" onclick="return false;"></a></li>
+              <li><a rel="4" class="cd-undone sprite-icons-star-half" onclick="return false;"></a></li>
+              <li><a rel="5" class="cd-undone sprite-icons-star-half" onclick="return false;"></a></li>
+            </ul>
+          </div>
+
+        </div>
+        <div class="cd-inp-out">
+          <form onsubmit="return clickdesk_send_chat_message();" id="cdChatSendForm" name="broadcastchatForm" style="position: relative;display:block;">
+            <textarea rows="0" cols="0" id="broadcastchat" name="broadcastchat" maxlength="200" style="background-image: none !important; border-color: rgb(204, 204, 204);" placeholder="Message" class=""></textarea>
+            <div class="cd-form-sec" style="border-radius: 0px!important;margin: 0px!important;padding: 0px!important;"><ul style="margin: 0px!important;"><li style="margin: 0px!important;"><input class="clickdesk_next" id="broadcastchatsend" type="submit" value="Send" style="display:none!important;"></li></ul></div>
+          </form>
+
+                </div>
+
+              </div><div class="cd-inp-out">
+              <span><a rel="nofollow" href="http://www.clickdesk.com/clickdesk-confirm.jsp?utm_source=powered-by&amp;utm_medium=widget&amp;utm_campaign=www-snowball-io&amp;utm_me=qNWX3" target="_blank"></a></span>
+            </div>
+            <div class="cd-chat-content" id="clickdesk-chat-w-footer">
+              <div id="clickdesk_footer_tabs" class="ClickDeskFooter cd-footer">
+               <ul>
+                 <li class="ClickDeskActive"><a id="cd_chat" onclick="return false;"><span onclick="CLICKDESK_SOCIAL_TAB_UI.show_social_network_tab('cd_chat');" class="sprite-icons-footer-chat"></span></a> </li>
+                 <li> <a id="cd_phone" onclick="return false;" style="display: none;"><span onclick="CLICKDESK_SOCIAL_TAB_UI.show_social_network_tab('cd_phone');" class="sprite-icons-footer-phone"></span></a> </li>
+                 <li class=""> <a id="cd_helpdesk" onclick="return false;"><span onclick="CLICKDESK_SOCIAL_TAB_UI.show_social_network_tab('cd_helpdesk');" class="sprite-icons-footer-mail"></span></a> </li>
+
+
+
+
+               </ul>
+             </div>
+           </div><span id="cd_playsound" style="display:none;height:0px;"></span></div>
+         </div>
+       </div>
+     </div>

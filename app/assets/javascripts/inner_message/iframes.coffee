@@ -1,11 +1,12 @@
-class messageViewModel 
+class messageViewModel
   constructor: ->
     self = this
-    self.messages = ko.observableArray([])
+    self.conversations = ko.observableArray([])
     self.unread = ko.observable(0)
     self.showingMessageBox = ko.observable(false)
+    self.showingConversation = ko.observable(false)
 
-    @markAsRead = (message, event) ->
+    self.markAsRead = (message, event) ->
       return if message.read
       $.post("/inner_message/messages/#{message.id}/read")
         .done (data) ->
@@ -13,15 +14,24 @@ class messageViewModel
           $(event.currentTarget).removeClass('unread')
           self.unread(self.unread()-1)
 
-    @init = ->
+    self.init = ->
       faye = new Faye.Client("#{window.APP.faye_server}")
-      faye.subscribe "/#{window.APP.current_user_token}", (json) ->
-        json['read'] = false
-        self.messages.push json
+      faye.subscribe "/#{window.APP.current_user_token}", (message) ->
+        message['read'] = false
+        self.getMessage(message)
         self.unread(self.unread()+1)
-      @get_unread()
+      self.get_unread()
 
-    @toggleMessageBox = ->
+    self.getMessage = (message)->
+      index = -1
+      index = i for c, i in self.conversations() when c.id == message.from_id
+
+      if index >= 0
+        self.conversations()[index].messages.push message
+      else
+        self.conversations.push {id: message.from_id, messages: ko.observableArray([message])}
+
+    self.toggleMessageBox = ->
       container = $(window.parent.document.getElementById('iframe-container'))
 
       if(self.showingMessageBox())
@@ -31,40 +41,46 @@ class messageViewModel
 
       self.showingMessageBox(!self.showingMessageBox())
 
-    @get_unread = -> 
+    self.get_unread = ->
       $.getJSON('/inner_message/messages')
-        .done (data) ->
-          self.messages(data)
-          self.unread(data.length)
-      
-    @reply = (message) ->
+        .done (messages) ->
+          self.getMessage msg for msg in messages
+          self.unread(messages.length)
+
+    self.reply = (message) ->
       textarea = $("#message-"+message.id+" .reply-box textarea")
       content = textarea.val()
-      
+
       $.post("/inner_message/messages/#{message.id}/reply", {content: content})
         .done (data) ->
           self.resetReply(message)
 
-    @cancelReply = (message) ->
+    self.cancelReply = (message) ->
       self.resetReply(message)
 
-    @resetReply = (message) ->
+    self.resetReply = (message) ->
       textarea = $("#message-"+message.id+" .reply-box textarea")
       textarea.val('')
       textarea.parent().fadeOut()
 
-    @showReply = (message) ->
+    self.showReply = (message) ->
       $("#message-"+message.id+" .reply-box").show()
 
-    @formatTime = (created_at) ->
+    self.formatTime = (created_at) ->
       time = new Date(created_at)
       time.toLocaleTimeString()
 
-    @init()
+    self.showConversation = (conversation)->
+      self.showingConversation(conversation.id)
+
+    self.hideConversation = ->
+      self.showingConversation(false)
+
+    self.init()
 
 
 $(document).ready ->
 
-  ko.applyBindings(new messageViewModel())    
+  ko.applyBindings(new messageViewModel())
 
-  
+

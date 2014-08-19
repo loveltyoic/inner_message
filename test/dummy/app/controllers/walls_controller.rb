@@ -1,6 +1,6 @@
 class WallsController < ApplicationController
   def index
-    session[:current_user] = Player.create.id
+    session[:current_user] = Player.last.id
   end
 
   def create

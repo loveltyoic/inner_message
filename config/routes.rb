@@ -1,10 +1,11 @@
 InnerMessage::Engine.routes.draw do
-  resources :messages do 
-    member do 
+  resources :messages do
+    member do
       post 'read'
       post 'reply'
     end
   end
   resource :admin
-  resource :iframe
+  resource :iframe, only: [:show]
+  resource :chat, only: [:show]
 end

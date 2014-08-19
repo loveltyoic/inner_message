@@ -2,22 +2,39 @@
   <span class="badge" data-bind="text: unread, click: toggleMessageBox, css: { alert: unread()!='0' }"></span>
 </div>
 
-<div data-bind="foreach: messages, visible: showingMessageBox" class="message-list">
-  <div class="conversation" data-bind="attr: {'id': 'message-'+id}">
-    <div class="media" data-bind="click: $parent.markAsRead, css: {'unread': !read}">
-      <small class="author"><a href="#" title="" class="strong">Jane Doe</a></small>
-      <div class="media-object pull-left"><%= image_tag 'inner_message/face.png', class: "img-circle"%></div>
-      <div class="media-body">
-        <blockquote>
-          <small class="date"><cite data-bind="text: $parent.formatTime(created_at)"></cite></small>
-          <p data-bind="text: content, click: $parent.showReply"></p>
-        </blockquote>
-      </div>
-    </div>
-    <div class="reply-box">
-      <textarea></textarea>
-      <button data-bind="click: $parent.reply">回复</button>
-      <button data-bind="click: $parent.cancelReply">取消</button>
+<div data-bind="visible: showingMessageBox" class="message-list">
+  <button class="btn btn-primary" data-bind="click: hideConversation, visible: showingConversation()">Return</button>
+  <!-- ko foreach: conversations -->
+  <div class="mixit-chat-1 mix media border-bottom innerAll margin-none mix_all" data-bind="click: $root.showConversation, visible: !$root.showingConversation()">
+    <a href="#chat-conversation" data-toggle="tab" class="pull-left media-object"><%= image_tag 'inner_message/face.png' %></a>
+    <div class="media-body">
+      <a href="#chat-conversation" data-toggle="tab" class="pull-right text-muted innerT half">
+        <i class="fa fa-comments"></i> 4
+      </a>
+      <h5 class="margin-none"><a href="#chat-conversation" data-toggle="tab" class="text-white">Perpetua Inger</a></h5>
+      <small>Hey, the party is on tonight!</small>
     </div>
   </div>
+  <div class="conversation" data-bind="attr: {'id': 'from-'+id}, visible: $root.showingConversation() == id">
+    <div data-bind="foreach: messages">
+      <div data-bind="attr: {'id': 'message-'+id}">
+        <div class="media" data-bind="click: $root.markAsRead, css: {'unread': !read}">
+          <small class="author"><a href="#" title="" class="strong">Jane Doe</a></small>
+          <div class="media-object pull-left"><%= image_tag 'inner_message/face.png', class: "img-circle"%></div>
+          <div class="media-body">
+            <blockquote>
+              <small class="date"><cite data-bind="text: $root.formatTime(created_at)"></cite></small>
+              <p data-bind="text: content, click: $root.showReply"></p>
+            </blockquote>
+          </div>
+        </div>
+        <div class="reply-box">
+          <textarea></textarea>
+          <button data-bind="click: $root.reply">回复</button>
+          <button data-bind="click: $root.cancelReply">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /ko -->
 </div>
