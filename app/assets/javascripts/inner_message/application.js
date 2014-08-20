@@ -14,3 +14,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require inner_message/knockout-3.1.0
+//= require inner_message/util

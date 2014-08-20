@@ -32,12 +32,13 @@ class messageViewModel
         self.conversations.push {id: message.from_id, messages: ko.observableArray([message])}
 
     self.toggleMessageBox = ->
+
       container = $(window.parent.document.getElementById('iframe-container'))
 
       if(self.showingMessageBox())
-        container.css('height', '30px')
+        container.css({'height': '30px', 'width': '30px', 'right': '50%'})
       else
-        container.css('height', '100%')
+        container.css({'height': '100%', 'width': '250px', 'right': '0'})
 
       self.showingMessageBox(!self.showingMessageBox())
 
@@ -47,34 +48,34 @@ class messageViewModel
           self.getMessage msg for msg in messages
           self.unread(messages.length)
 
-    self.reply = (message) ->
-      textarea = $("#message-"+message.id+" .reply-box textarea")
+    self.reply = (conversation, e) ->
+      textarea = $(e.currentTarget).siblings('textarea')
       content = textarea.val()
+      initMsg = conversation.messages()[0]
+      $.post("/inner_message/messages/#{initMsg.id}/reply", {content: content})
+        .done (response) ->
+          self.resetReply(textarea)
+          self.replyInConversation(response.data)
+          self.scrollMessageToBottom($(e.currentTarget).parent().siblings('.messages'))
 
-      $.post("/inner_message/messages/#{message.id}/reply", {content: content})
-        .done (data) ->
-          self.resetReply(message)
-
-    self.cancelReply = (message) ->
-      self.resetReply(message)
-
-    self.resetReply = (message) ->
-      textarea = $("#message-"+message.id+" .reply-box textarea")
+    self.resetReply = (textarea) ->
       textarea.val('')
-      textarea.parent().fadeOut()
-
-    self.showReply = (message) ->
-      $("#message-"+message.id+" .reply-box").show()
 
     self.formatTime = (created_at) ->
-      time = new Date(created_at)
-      time.toLocaleTimeString()
+      window.formatTime(created_at)
 
     self.showConversation = (conversation)->
       self.showingConversation(conversation.id)
 
     self.hideConversation = ->
       self.showingConversation(false)
+
+    self.replyInConversation = (reply)->
+      index = i for c, i in self.conversations() when c.id == reply.to_id
+      self.conversations()[index].messages.push reply
+
+    self.scrollMessageToBottom = (dom) ->
+      dom.animate({'scrollTop': dom[0].scrollHeight}, 0)
 
     self.init()
 

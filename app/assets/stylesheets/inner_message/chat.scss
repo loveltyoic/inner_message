@@ -1,0 +1,83 @@
+$green: #3da179;
+.chat-bar {
+  color: #fff!important;
+  display: block;
+  width: 209px;
+  font-family: Verdana,Geneva,sans-serif!important;
+  font-size: 13px!important;
+  font-weight: normal!important;
+  line-height: 2.55em!important;
+  text-align: center!important;
+  margin-top: 1px!important;
+  background-color: #3da179!important;
+  background-position: right center!important;
+  background-repeat: no-repeat!important;
+  border: 3px solid #fff!important;
+  border-bottom-width: 2px!important;
+  border-radius: 8px 8px 0 0!important;
+  box-shadow: 0 0 4px #666;
+  position: relative!important;
+  z-index: 9999!important;
+  padding: 0 10px;
+  width: auto;
+  text-decoration: none!important;
+  text-align: left!important;
+  -webkit-transition-duration: 0.25s;
+  -webkit-transition-property: all;
+  -webkit-transition-timing-function: ease;
+}
+a.chat-bar:hover {
+  box-shadow: 0 0 20px #888;
+}
+.put-bottom {
+  left: auto;
+  right: 0px;
+  width: auto !important;
+  -webkit-animation: dissolve;
+  position: absolute;
+  bottom: 0px;
+}
+.history {
+  height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  border-bottom: 1px solid $green;
+}
+.scroll-container {
+  width: 100%;
+}
+.chat {
+  width: 250px;
+  height: 350px;
+  border: 1px solid $green;
+  border-radius: 5px 5px 0 0;
+  .toolbar {
+    height: 50px;
+    width: 100%;
+    background-color: $green;
+    padding: 15px 15px;
+    color: white;
+    font-size: 18px;
+    button {
+      float: right;
+    }
+  }
+}
+.input-box {
+  height: 100px;
+  width: 100%;
+  padding: 10px 15px;
+  textarea {
+    float: left;
+    margin-right: 10px;
+    width: 140px;
+    height: 55px;
+  }
+  button {
+    float: left;
+    width: 30%;
+    height: 55px;
+    background-color: $green;
+  }
+}

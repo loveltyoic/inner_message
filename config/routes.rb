@@ -7,5 +7,5 @@ InnerMessage::Engine.routes.draw do
   end
   resource :admin
   resource :iframe, only: [:show]
-  resource :chat, only: [:show]
+  resource :chat, only: [:show, :create]
 end

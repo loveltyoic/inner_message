@@ -1,6 +1,6 @@
 require 'test_helper'
 module InnerMessage
-  describe Message do 
+  describe Message do
     let(:sender) { InnerMessage.user_class.create }
     let(:receiver) { InnerMessage.user_class.create }
     let(:another_receiver) { InnerMessage.user_class.create }
@@ -24,9 +24,10 @@ module InnerMessage
       another_receiver.get_messages.unread.count.must_equal 1
     end
 
-    it 'have from user' do 
-      msg = sender.send_message({to_id: receiver, content: @string})
+    it 'have from user' do
+      msg = sender.send_message({to_id: receiver.id, content: @string})
       msg.from.must_equal sender
+      msg.to.must_equal receiver
     end
   end
 end

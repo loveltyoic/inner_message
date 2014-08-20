@@ -12,9 +12,11 @@
 
 <%= yield %>
 <script>
-  APP = {};
-  APP.current_visitor_token = "<%= @visitor.session_key %>";
-  APP.faye_server = "<%= @faye_server %>";
+  APP = {
+    visitor_session_key: "<%= @visitor.session_key %>",
+    faye_server: "<%= @faye_server %>",
+    operatorId: "<%= @operator_id %>"
+  };
 </script>
 </body>
 </html>

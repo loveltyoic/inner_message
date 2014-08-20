@@ -1,39 +1,43 @@
 <div class="unread-count">
-  <span class="badge" data-bind="text: unread, click: toggleMessageBox, css: { alert: unread()!='0' }"></span>
+  <span class="badge clickable" data-bind="text: unread, click: toggleMessageBox, css: { 'unread-alert': unread()!='0' }, visible: !showingMessageBox()"></span>
 </div>
 
-<div data-bind="visible: showingMessageBox" class="message-list">
-  <button class="btn btn-primary" data-bind="click: hideConversation, visible: showingConversation()">Return</button>
+<div data-bind="css: {'show-message-list': showingMessageBox, 'hide-message-list': !showingMessageBox()}" class="message-list">
+  <div class="toolbar innerAll">
+    <button class="btn btn-primary" data-bind="click: hideConversation, visible: showingConversation()"><i class="fa fa-group"></i></button>
+    <button class="btn btn-close btn-inverse btn-xs" data-bind="click: toggleMessageBox">
+      <i class="fa fa-times"></i>
+    </button>
+  </div>
   <!-- ko foreach: conversations -->
-  <div class="mixit-chat-1 mix media border-bottom innerAll margin-none mix_all" data-bind="click: $root.showConversation, visible: !$root.showingConversation()">
+  <div class="relative-box media border-bottom innerAll margin-none mix_all" data-bind="click: $root.showConversation, visible: !$root.showingConversation()">
     <a href="#chat-conversation" data-toggle="tab" class="pull-left media-object"><%= image_tag 'inner_message/face.png' %></a>
     <div class="media-body">
       <a href="#chat-conversation" data-toggle="tab" class="pull-right text-muted innerT half">
-        <i class="fa fa-comments"></i> 4
+        <i class="fa fa-comments"></i><span data-bind="text: messages().length"></span>
       </a>
-      <h5 class="margin-none"><a href="#chat-conversation" data-toggle="tab" class="text-white">Perpetua Inger</a></h5>
-      <small>Hey, the party is on tonight!</small>
+      <h5 class="margin-none"><a href="#chat-conversation" data-toggle="tab" class="text-white" data-bind="text: id"></a></h5>
+      <small data-bind="text: messages()[0].content"></small>
     </div>
   </div>
   <div class="conversation" data-bind="attr: {'id': 'from-'+id}, visible: $root.showingConversation() == id">
-    <div data-bind="foreach: messages">
-      <div data-bind="attr: {'id': 'message-'+id}">
+    <div data-bind="foreach: messages" class="messages">
+      <div data-bind="attr: {'id': 'message-'+id}, css: {'from-self': from_id != $parent.id} " class="innerAll relative-box">
         <div class="media" data-bind="click: $root.markAsRead, css: {'unread': !read}">
-          <small class="author"><a href="#" title="" class="strong">Jane Doe</a></small>
-          <div class="media-object pull-left"><%= image_tag 'inner_message/face.png', class: "img-circle"%></div>
+          <small class="author"><a href="#" title="" class="strong" data-bind="text: from_id"></a></small>
+          <div class="media-object"><%= image_tag 'inner_message/face.png', class: "img-circle"%></div>
           <div class="media-body">
             <blockquote>
               <small class="date"><cite data-bind="text: $root.formatTime(created_at)"></cite></small>
-              <p data-bind="text: content, click: $root.showReply"></p>
+              <p data-bind="text: content"></p>
             </blockquote>
           </div>
         </div>
-        <div class="reply-box">
-          <textarea></textarea>
-          <button data-bind="click: $root.reply">回复</button>
-          <button data-bind="click: $root.cancelReply">取消</button>
-        </div>
       </div>
+    </div>
+    <div class="input-box">
+      <textarea class="form-control" row="3" data-bind="attr: {id: 'reply-'+id}"></textarea>
+      <button class="btn btn-primary" data-bind="click: $root.reply">发送</button>
     </div>
   </div>
   <!-- /ko -->
