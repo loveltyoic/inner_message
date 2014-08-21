@@ -1,8 +1,8 @@
 module InnerMessage
   class Broadcast < ActiveRecord::Base
-    belongs_to :message_channel
+    belongs_to :channel
 
-    validates :message_channel_id, presence: true
+    validates :channel_id, presence: true
     validates :title, presence: true
     validates :content, presence: true
 
@@ -26,11 +26,11 @@ module InnerMessage
 
     private 
     def publish_to_faye
-      FayeClient.send('channel-'+self.message_channel_id.to_s, self.serializable_hash)
+      FayeClient.send('channel-'+self.channel_id.to_s, self.serializable_hash)
     end
 
     def store_id_in_redis
-      $inner_redis.sadd "inner_message:#{self.message_channel_id.to_s}:broadcasts", self.id
+      $inner_redis.sadd "inner_message:#{self.channel_id.to_s}:broadcasts", self.id
     end
 
   end

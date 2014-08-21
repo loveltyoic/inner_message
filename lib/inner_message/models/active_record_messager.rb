@@ -3,35 +3,36 @@ module InnerMessage
     extend ActiveSupport::Concern
 
     included do
-      has_one :message_box, class_name: 'InnerMessage::MessageBox', foreign_key: :user_id
-      has_one :message_token, class_name: 'InnerMessage::MessageToken', foreign_key: :user_id
-      has_many :message_channels, class_name: 'InnerMessage::MessageChannel', through: :subscriptions
+      has_one :agent, class_name: 'InnerMessage::Agent', foreign_key: :user_id
+      has_many :channels, class_name: 'InnerMessage::Channel', through: :subscriptions
       has_many :subscriptions, class_name: 'InnerMessage::Subscription', foreign_key: :user_id
     end
 
     def get_messages
-      self.message_box.nil? ? self.create_message_box.messages : self.message_box.messages
+      check_agent { |ag| ag.get_messages }
     end
 
     def send_message(params)
-      to = self.class.find(params[:to_id])
-      mb = to.message_box || to.create_message_box
-      mb.messages.create params.merge!({from_id: self.id})
+      check_agent do |ag|
+        to_user = self.class.find(params[:to_id])
+        to_agent = to_user.agent || to_user.create_agent
+        to_agent.messages.create(to_id: to_agent.id, content: params[:content], from_id: ag.id)
+      end
     rescue ActiveRecord::RecordNotFound
       false
     end
 
     def subscribe_channel(channel_id)
-      InnerMessage::Subscription.create({user_id: self.id, message_channel_id: channel_id})
+      InnerMessage::Subscription.create({user_id: self.id, channel_id: channel_id})
     end
 
     def unsubscribe_channel(channel_id)
-      InnerMessage::Subscription.destroy_all({user_id: self.id, message_channel_id: channel_id})
+      InnerMessage::Subscription.destroy_all({user_id: self.id, channel_id: channel_id})
     end
 
     def get_broadcasts_by_channel_id(channel_id)
       check_subscription(channel_id) do
-        channel = InnerMessage::MessageChannel.find(channel_id)
+        channel = InnerMessage::Channel.find(channel_id)
         channel.broadcasts
       end
     end
@@ -43,13 +44,9 @@ module InnerMessage
       end
     end
 
-    def session_key
-      MessageToken.get_secret(self.id)
-    end
-
     private
     def check_subscription(channel_id)
-      subscription = InnerMessage::Subscription.where({user_id: self.id, message_channel_id: channel_id}).first
+      subscription = InnerMessage::Subscription.where({user_id: self.id, channel_id: channel_id}).first
       if subscription
         yield
       else
@@ -57,6 +54,10 @@ module InnerMessage
       end
     end
 
+    def check_agent
+      @agent = self.agent || self.create_agent
+      yield @agent
+    end
 
   end
 end

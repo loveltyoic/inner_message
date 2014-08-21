@@ -9,7 +9,7 @@
       <div class="history">
         <div class="scroll-container">
         <!-- ko foreach: historyMessages -->
-        <div data-bind="attr: {'id': 'message-'+id}, css: {'from-self': from_id == <%= current_visitor.id %>} " class="innerAll relative-box">
+        <div data-bind="attr: {'id': 'message-'+id}, css: {'from-self': from_id == <%= current_talker.id %>} " class="innerAll relative-box">
           <div class="media">
             <small class="author"><a href="#" title="" class="strong" data-bind="text: from_id"></a></small>
             <div class="media-object"><%= image_tag 'inner_message/face.png', class: "img-circle"%></div>

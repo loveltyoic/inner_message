@@ -3,7 +3,7 @@ require_dependency "inner_message/application_controller"
 module InnerMessage
   class IframesController < ApplicationController
     def show
-      @token = MessageToken.generate(current_user_id)
+      @token = current_talker.session_key
       @faye_server = CONFIG['faye']['server']
     end
   end

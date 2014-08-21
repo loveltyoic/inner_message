@@ -7,10 +7,10 @@ module InnerMessage
       session[InnerMessage.user_session_key] = @user.id
     end
 
-    test "generate token" do
+    test "generate session key" do
       get :show, use_route: :inner_message
-      assert_equal @user.id, @controller.current_user_id
-      assert_equal assigns(:token).secret, @user.reload.message_token.secret
+      assert_equal @user.agent, @controller.current_talker
+      assert_equal assigns(:token), @user.agent.session_key
     end
   end
 end

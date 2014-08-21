@@ -3,7 +3,7 @@ module InnerMessage
   describe Messager do 
     let(:sender) { InnerMessage.user_class.create }
     let(:receiver) { InnerMessage.user_class.create }
-    let(:channel) { create(:message_channel) }
+    let(:channel) { create(:channel) }
     let(:subscriber) { InnerMessage.user_class.create }
 
     before do
@@ -23,7 +23,7 @@ module InnerMessage
     end
 
     it 'should receive message from sender' do
-      receiver.get_messages.last.from_id.must_equal sender.id
+      receiver.get_messages.last.from_id.must_equal sender.agent.id
     end
 
     it 'return false if send to user not exists' do

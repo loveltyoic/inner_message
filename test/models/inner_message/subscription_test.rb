@@ -4,17 +4,17 @@ module InnerMessage
   describe Subscription do
     before do
       @user = InnerMessage.user_class.create
-      @channel = create(:message_channel)
+      @channel = create(:channel)
       @user.subscribe_channel(@channel.id)
     end    
 
     it "user can subscribe channel" do
-      @user.message_channels.must_include @channel
+      @user.channels.must_include @channel
     end
 
     it "user can unsubscribe channel" do 
       @user.unsubscribe_channel(@channel.id)
-      @user.message_channels.wont_include @channel
+      @user.channels.wont_include @channel
     end
 
   end

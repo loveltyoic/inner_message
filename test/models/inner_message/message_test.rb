@@ -24,10 +24,10 @@ module InnerMessage
       another_receiver.get_messages.unread.count.must_equal 1
     end
 
-    it 'have from user' do
+    it 'has to and from' do
       msg = sender.send_message({to_id: receiver.id, content: @string})
-      msg.from.must_equal sender
-      msg.to.must_equal receiver
+      msg.from.must_equal sender.agent
+      msg.to.must_equal receiver.agent
     end
   end
 end

@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :message_channel, class: InnerMessage::MessageChannel do 
+  factory :channel, class: InnerMessage::Channel do 
     sequence(:name) { |n| "channel_#{n}" }
   end
 end

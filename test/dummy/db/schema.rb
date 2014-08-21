@@ -11,34 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140815091046) do
+ActiveRecord::Schema.define(version: 20140821061820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "inner_message_broadcasts", force: true do |t|
     t.text     "content"
-    t.integer  "message_channel_id"
+    t.integer  "channel_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
   end
 
-  create_table "inner_message_message_boxes", force: true do |t|
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "inner_message_message_channels", force: true do |t|
+  create_table "inner_message_channels", force: true do |t|
     t.string "name"
-  end
-
-  create_table "inner_message_message_tokens", force: true do |t|
-    t.integer  "user_id"
-    t.string   "secret"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "inner_message_messages", force: true do |t|
@@ -54,12 +41,13 @@ ActiveRecord::Schema.define(version: 20140815091046) do
 
   create_table "inner_message_subscriptions", force: true do |t|
     t.integer "user_id"
-    t.integer "message_channel_id"
+    t.integer "channel_id"
   end
 
   create_table "inner_message_talkers", force: true do |t|
-    t.string "type"
-    t.string "session_key"
+    t.string  "type"
+    t.string  "session_key"
+    t.integer "user_id"
   end
 
   create_table "players", force: true do |t|
