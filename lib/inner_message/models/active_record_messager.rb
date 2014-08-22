@@ -16,7 +16,7 @@ module InnerMessage
       check_agent do |ag|
         to_user = self.class.find(params[:to_id])
         to_agent = to_user.agent || to_user.create_agent
-        to_agent.messages.create(to_id: to_agent.id, content: params[:content], from_id: ag.id)
+        ag.send_message(to_id: to_agent.id, content: params[:content])
       end
     rescue ActiveRecord::RecordNotFound
       false
