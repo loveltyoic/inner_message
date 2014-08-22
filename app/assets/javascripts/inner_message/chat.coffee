@@ -6,8 +6,14 @@ class ChatViewModel
 
     self.initChat = ->
       faye = new Faye.Client("#{window.APP.faye_server}")
-      faye.subscribe "/#{window.APP.visitor_session_key}", (message) ->
-        self.historyMessages.unshift message
+      faye.subscribe "/InnerMessage/Operator/#{window.APP.visitor_session_key}", (message) ->
+        self.historyMessages.push message
+        
+      self.historyMessages.push
+        content: "This is #{window.APP.operatorId}.What can I do for you?"
+        from_id: window.APP.operatorId
+        id: 0
+        created_at: new Date()
 
     self.toggleChat = ->
       container = $(window.parent.document.getElementById('iframe-chat'))
@@ -32,7 +38,7 @@ class ChatViewModel
       $.post("/inner_message/chat", {content: content, operator_id: window.APP.operatorId})
         .done (msg) ->
           self.resetText()
-          self.historyMessages.unshift msg
+          self.historyMessages.push msg
 
     self.initChat()
 

@@ -6,7 +6,12 @@ module InnerMessage
 
     # message must include to_id, content
     def send_message(message)
-      Talker.find(message[:to_id]).messages.create(to_id: message[:to_id], from_id: self.id, content: message[:content])
+      Talker.find(message[:to_id]).messages.create(
+        to_id: message[:to_id], 
+        from_id: self.id, 
+        content: message[:content], 
+        from_type: self.type
+      )
     end
 
     def get_messages

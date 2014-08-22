@@ -5,7 +5,8 @@ module InnerMessage
     before do
       @channel = create(:channel)
       @message = @channel.send_broadcast('Test', 'This is a test broadcast!')
-      @user = InnerMessage.user_class.create
+      # @user = InnerMessage.user_class.create
+      @user = create(:user)
       @user.subscribe_channel(@channel.id)
     end
 

@@ -8,4 +8,11 @@ InnerMessage::Engine.routes.draw do
   resource :admin
   resource :iframe, only: [:show]
   resource :chat, only: [:show, :create]
+
+  resources :operators do 
+    member do 
+      post 'reply'
+    end
+  end
+
 end

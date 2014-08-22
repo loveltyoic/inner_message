@@ -1,10 +1,10 @@
 require 'test_helper'
 module InnerMessage
   describe Messager do 
-    let(:sender) { InnerMessage.user_class.create }
-    let(:receiver) { InnerMessage.user_class.create }
+    let(:sender) { create(:user) }
+    let(:receiver) { create(:user) }
     let(:channel) { create(:channel) }
-    let(:subscriber) { InnerMessage.user_class.create }
+    let(:subscriber) { create(:user) }
 
     before do
       sender.send_message({to_id: receiver.id, content: 'I love ruby!'})

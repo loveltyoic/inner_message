@@ -16,6 +16,5 @@ module InnerMessage
         render 403
       end
     end
-
   end
 end

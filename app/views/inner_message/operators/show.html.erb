@@ -1,0 +1,34 @@
+<!-- ko foreach: conversations -->
+<div class="chat">
+  <div class="history">
+    <div class="scroll-container">
+    <!-- ko foreach: messages -->
+    <div data-bind="attr: {'id': 'message-'+id}, css: {'from-self': from_id != $parent.id} " class="innerAll relative-box">
+      <div class="media">
+        <small class="author"><a href="#" title="" class="strong" data-bind="text: from_id"></a></small>
+        <div class="media-object"><%= image_tag 'inner_message/face.png', class: "img-circle"%></div>
+        <div class="media-body">
+          <blockquote>
+            <small class="date"><cite data-bind="text: $root.formatTime(created_at)"></cite></small>
+            <p data-bind="text: content"></p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+    <!-- /ko -->
+    </div>
+  </div>
+  <div class="input-box">
+    <textarea class="form-control" row="3" class="chat-message"></textarea>
+    <button class="btn btn-primary" data-bind="click: $root.reply">发送</button>
+  </div>
+</div>
+<!-- /ko -->
+<script>
+  APP = {};
+  APP.operator_id = "<%= @operator_id %>";
+  APP.operator_session_key = "<%= @operator_session_key %>";
+  APP.faye_server = "<%= @faye_server %>";
+</script>
+<script src="<%= @faye_server %>/client.js"></script>
+<%= javascript_include_tag "inner_message/operator" %>

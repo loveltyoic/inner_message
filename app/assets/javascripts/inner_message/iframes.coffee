@@ -16,7 +16,7 @@ class messageViewModel
 
     self.init = ->
       faye = new Faye.Client("#{window.APP.faye_server}")
-      faye.subscribe "/#{window.APP.current_user_token}", (message) ->
+      faye.subscribe "/InnerMessage/Agent/#{window.APP.current_user_token}", (message) ->
         message['read'] = false
         self.getMessage(message)
         self.unread(self.unread()+1)

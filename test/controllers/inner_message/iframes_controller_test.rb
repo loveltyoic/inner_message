@@ -3,7 +3,7 @@ require 'test_helper'
 module InnerMessage
   class IframesControllerTest < ActionController::TestCase
     setup do 
-      @user = InnerMessage.user_class.create
+      @user = create(:user)
       session[InnerMessage.user_session_key] = @user.id
     end
 

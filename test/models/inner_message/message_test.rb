@@ -1,9 +1,9 @@
 require 'test_helper'
 module InnerMessage
   describe Message do
-    let(:sender) { InnerMessage.user_class.create }
-    let(:receiver) { InnerMessage.user_class.create }
-    let(:another_receiver) { InnerMessage.user_class.create }
+    let(:sender) { create(:user) }
+    let(:receiver) { create(:user) }
+    let(:another_receiver) { create(:user) }
 
     before do
       @string = 'I love ruby!'
@@ -28,6 +28,11 @@ module InnerMessage
       msg = sender.send_message({to_id: receiver.id, content: @string})
       msg.from.must_equal sender.agent
       msg.to.must_equal receiver.agent
+    end
+
+    it 'record from type' do 
+      msg = sender.send_message(to_id: receiver.id, content: @string)
+      msg.from_type.must_equal 'InnerMessage::Agent'
     end
   end
 end

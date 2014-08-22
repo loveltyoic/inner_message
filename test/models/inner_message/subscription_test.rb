@@ -3,7 +3,7 @@ require 'test_helper'
 module InnerMessage
   describe Subscription do
     before do
-      @user = InnerMessage.user_class.create
+      @user = create(:user)
       @channel = create(:channel)
       @user.subscribe_channel(@channel.id)
     end    

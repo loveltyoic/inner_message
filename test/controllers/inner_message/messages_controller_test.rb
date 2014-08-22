@@ -3,9 +3,9 @@ require 'test_helper'
 module InnerMessage
   class MessagesControllerTest < ActionController::TestCase
     setup do
-      @receiver = InnerMessage.user_class.create
+      @receiver = create(:user)
       session[InnerMessage.user_session_key] = @receiver.id      
-      @sender = InnerMessage.user_class.create
+      @sender = create(:user)
     end
 
     test "show unread messages" do

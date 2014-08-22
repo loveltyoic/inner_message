@@ -1,0 +1,5 @@
+<% @operators.each do |operator| %>
+  <%= link_to operator.id, operator %>
+<% end %>
+
+<%= button_to 'Add', 'operators', remote: true %>
