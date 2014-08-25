@@ -26,7 +26,7 @@ module InnerMessage
 
     private 
     def publish_to_faye
-      FayeClient.send('channel-'+self.channel_id.to_s, self.serializable_hash)
+      FayeClient.send('InnerMessage/Channel/'+self.channel_id.to_s, self.serializable_hash)
     end
 
     def store_id_in_redis

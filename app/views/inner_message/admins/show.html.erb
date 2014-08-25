@@ -1,0 +1,37 @@
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>Channels</h1>
+  </div>
+</div>
+<div>
+  <input class="form-control"></input>
+  <button class="btn" data-bind="click: createChannel">Add Channel</button>
+</div>
+<!-- ko foreach: channels -->
+<button data-bind="click: $root.showChannel, text: name"></button>
+<!-- /ko -->
+  <div data-bind="foreach: broadcasts()[1]">
+    <div data-bind="text: title"></div>
+    <div data-bind="text: content"></div>
+  </div>
+<!-- ko foreach: channels -->
+<div data-bind="visible: $root.showingChannel() == id">
+  <h2 data-bind="text: name"></h2>
+  <div data-bind="foreach: $root.broadcasts()[id]">
+    <div data-bind="text: title"></div>
+    <div data-bind="text: content"></div>
+  </div>
+  <div class="container">
+    <div class="col-md-4 col-md-offset-2">
+      <input class="form-control"></input>
+      <textarea class="form-control" rows="3"></textarea>
+      <button data-bind="click: $root.createBroadcast" class="btn btn-block btn-primary">Send</button>
+    </div>
+
+    <div id="message-box" class="col-md-4">
+      <ul class="media-list">
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- /ko -->

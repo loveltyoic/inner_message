@@ -1,6 +1,7 @@
 require_dependency "inner_message/application_controller"
 module InnerMessage
   class ChatsController < ApplicationController
+    before_action :sign_in_user
     layout 'inner_message/chat'
     def show
       @faye_server = CONFIG['faye']['server']

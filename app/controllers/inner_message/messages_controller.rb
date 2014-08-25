@@ -1,7 +1,7 @@
 
 module InnerMessage
   class MessagesController < ApplicationController
-
+    before_action :sign_in_user
     def index
       @unread = current_talker.get_messages.unread
     rescue

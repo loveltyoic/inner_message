@@ -1,8 +1,7 @@
-<div class="jumbotron">
-  <div class="container text-center">
-    <h1>BroadCast</h1>
-  </div>
-</div>
+<% @channel.broadcasts.each do |broadcast| %>
+<p><%= broadcast.content %>
+<% end %>
+
 <div class="container">
   <div class="col-md-4 col-md-offset-2">
     <input class="form-control" id="to"></input>
