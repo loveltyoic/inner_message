@@ -6,7 +6,12 @@ module InnerMessage
       @broadcast = Broadcast.create(broadcast_params)
       render json: @broadcast
     end
-
+    def read_count
+      count = params[:ids].inject({}) do |result, id|
+        result.merge!({ "#{id}" => $redis.get("inner_message:#{id}:read_count") })
+      end
+      render json: count
+    end
     private
     def broadcast_params
       params.require(:broadcast).permit(:channel_id, :title, :content)

@@ -22,4 +22,9 @@ InnerMessage::Engine.routes.draw do
     end
   end
 
+  resources :broadcasts do
+    collection do
+      get 'read_count'
+    end
+  end
 end
