@@ -12,7 +12,7 @@ module InnerMessage
       user = create(:user)
       @broadcast.read_by_user user.id
       get :read_count, use_route: :inner_message, ids: [@broadcast.id]
-      assert_equal response, [{@broadcast.id => 1}]
+      assert_equal JSON.parse(response.body), {"#{@broadcast.id}" => "1"}
     end
   end
 end
