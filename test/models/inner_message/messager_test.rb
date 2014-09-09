@@ -1,6 +1,6 @@
 require 'test_helper'
 module InnerMessage
-  describe Messager do 
+  describe Messager do
     let(:sender) { create(:user) }
     let(:receiver) { create(:user) }
     let(:channel) { create(:channel) }
@@ -30,13 +30,13 @@ module InnerMessage
       sender.send_message({to_id: 10000, content: 'Nobody receive this message'}).must_equal false
     end
 
-    it 'get all broadcasts from channel' do 
+    it 'get all broadcasts from channel' do
       3.times { |i| channel.send_broadcast("test", "broadcast No.#{i}") }
       subscriber.subscribe_channel(channel.id)
       subscriber.get_broadcasts_by_channel_id(channel.id).count.must_equal 3
     end
 
-    it 'get unread broadcasts' do 
+    it 'get unread broadcasts' do
       subscriber.subscribe_channel(channel.id)
       unread_1 = channel.send_broadcast("title 1", 'broadcast_1')
       unread_2 = channel.send_broadcast("title 2", 'broadcast_2')
@@ -46,9 +46,15 @@ module InnerMessage
       subscriber.get_unread_broadcasts_by_channel_id(channel.id).count.must_equal 1
     end
 
-    it 'get nothing from unsubscribed channel' do 
+    it 'get nothing from unsubscribed channel' do
       channel.send_broadcast('Not Seen', "User could not read this if he/she doesn't subscribe.")
       subscriber.get_broadcasts_by_channel_id(channel.id).must_be_nil
+    end
+
+    it "get subscribed channels' ids" do
+      subscriber.subscribe_channel(channel.id)
+      sc = create(:system_channel)
+      subscriber.subscribed_channels.must_equal [channel.id, sc.id]
     end
 
   end

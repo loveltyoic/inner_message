@@ -21,17 +21,17 @@ class messageViewModel
         message['read'] = false
         self.getMessage(message)
         self.unread(self.unread()+1)
-        
+
       $.getJSON "/inner_message/iframe/channels", (channels)->
         for c in channels
-          self.channels.push {id: c.id, name: c.name, broadcasts: ko.observableArray(c.broadcasts)} 
-          self.subscribe(c.id, faye)
+          self.channels.push {id: c.id, name: c.name, broadcasts: ko.observableArray(c.broadcasts)}
+          self.subscribeChannel(c.id, faye)
 
       self.get_unread()
 
-    self.subscribe = (c_id, faye)->
+    self.subscribeChannel = (c_id, faye)->
       faye.subscribe "InnerMessage/Channel/#{c_id}", (bc) ->
-        
+
 
 
     self.getMessage = (message)->

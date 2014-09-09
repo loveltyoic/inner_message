@@ -5,19 +5,22 @@ InnerMessage::Engine.routes.draw do
       post 'reply'
     end
   end
-  resource :admin do 
-    get 'broadcasts'
+  resource :admin do
   end
-  resource :iframe, only: [:show] do 
+  resource :iframe, only: [:show] do
     get 'channels'
   end
   resource :chat, only: [:show, :create]
-  
-  resources :channels
+
+  resources :channels do
+    member do
+      get 'broadcasts'
+    end
+  end
   resources :broadcasts
 
-  resources :operators do 
-    member do 
+  resources :operators do
+    member do
       post 'reply'
     end
   end

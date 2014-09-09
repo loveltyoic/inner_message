@@ -7,9 +7,14 @@ module InnerMessage
       render json: @channel
     end
 
-    def index 
+    def index
       @channels = Channel.all
       render json: @channels
+    end
+
+    def broadcasts
+      @broadcasts = Broadcast.where(channel_id: params[:id])
+      render json: @broadcasts
     end
   end
 end

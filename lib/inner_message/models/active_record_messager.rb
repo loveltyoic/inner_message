@@ -44,6 +44,10 @@ module InnerMessage
       end
     end
 
+    def subscribed_channels
+      self.channels.pluck(:id).concat SystemChannel.pluck(:id)
+    end
+
     private
     def check_subscription(channel_id)
       subscription = InnerMessage::Subscription.where({user_id: self.id, channel_id: channel_id}).first

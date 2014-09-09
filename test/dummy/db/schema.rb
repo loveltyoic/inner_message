@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140822060928) do
+ActiveRecord::Schema.define(version: 20140901054005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20140822060928) do
 
   create_table "inner_message_channels", force: true do |t|
     t.string "name"
+    t.string "type"
   end
 
   create_table "inner_message_messages", force: true do |t|
