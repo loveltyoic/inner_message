@@ -53,8 +53,9 @@ module InnerMessage
 
     it "get subscribed channels' ids" do
       subscriber.subscribe_channel(channel.id)
+      subscriber.subscribed_channels.must_include channel.id
       sc = create(:system_channel)
-      subscriber.subscribed_channels.must_equal [channel.id, sc.id]
+      subscriber.subscribed_channels.must_include sc.id
     end
 
   end
