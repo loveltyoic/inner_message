@@ -1,0 +1,13 @@
+<div class="conversation" data-bind="visible: $root.showingChannel() == id">
+  <ul data-bind="foreach: broadcasts" class="media-list">
+    <li class="media" data-bind="click: $root.markBroadcastAsRead, css: {'unread': !read}">
+      <div class="media-body">
+        <div class="media-heading" data-bind="text: title"></div>
+        <blockquote>
+          <small class="date"><cite data-bind="text: $root.formatTime(created_at)"></cite></small>
+          <p data-bind="text: content"></p>
+        </blockquote>
+      </div>
+    </li>
+  </ul>
+</div>

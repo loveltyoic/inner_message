@@ -1,0 +1,14 @@
+<div data-bind="visible: $root.showingPage() == 'channel-new'">
+  <div class="form-group">
+    <input class="form-control" data-bind="value: newChannelName"></input>
+  </div>
+  <div class="form-group">
+    <input type="checkbox" data-bind="checked: systemChannel"></input>
+    系统频道（所有用户默认订阅）
+  </div>
+  <div class="form-group">
+    <button class="btn btn-success btn-block" data-bind="click: createChannel">
+      确认
+    </button>
+  </div>
+</div>

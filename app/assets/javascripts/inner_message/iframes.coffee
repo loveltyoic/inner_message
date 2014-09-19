@@ -2,10 +2,16 @@ class messageViewModel
   constructor: ->
     self = this
     self.conversations = ko.observableArray([])
+    self.channels = ko.observableArray([])
     self.unread = ko.observable(0)
     self.showingMessageBox = ko.observable(false)
     self.showingConversation = ko.observable(false)
-    self.channels = ko.observableArray([])
+    self.showingChannel = ko.observable(false)
+    self.showingCategory = ko.observable('Message')
+    self.notificationCategories = ko.observableArray([
+      { name: 'Message' },
+      { name: 'Broadcast' }
+    ])
 
     self.markAsRead = (message, event) ->
       return if message.read
@@ -23,15 +29,23 @@ class messageViewModel
         self.unread(self.unread()+1)
 
       $.getJSON "/inner_message/iframe/channels", (channels)->
+        unread_broadcasts = 0
         for c in channels
+          br['read'] = false for br in c.broadcasts
           self.channels.push {id: c.id, name: c.name, broadcasts: ko.observableArray(c.broadcasts)}
           self.subscribeChannel(c.id, faye)
+          unread_broadcasts += c.broadcasts.length
+        self.unread(self.unread()+unread_broadcasts)
 
       self.get_unread()
 
     self.subscribeChannel = (c_id, faye)->
-      faye.subscribe "InnerMessage/Channel/#{c_id}", (bc) ->
-
+      faye.subscribe "/InnerMessage/Channel/#{c_id}", (bc) ->
+        index = 0
+        index = i for c, i in self.channels() when c.id == c_id
+        bc['read'] = false
+        self.channels()[index].broadcasts.push bc
+        self.unread(self.unread()+1)
 
 
     self.getMessage = (message)->
@@ -58,7 +72,7 @@ class messageViewModel
       $.getJSON('/inner_message/messages')
         .done (messages) ->
           self.getMessage msg for msg in messages
-          self.unread(messages.length)
+          self.unread(self.unread()+messages.length)
 
     self.reply = (conversation, e) ->
       textarea = $(e.currentTarget).siblings('textarea')
@@ -79,8 +93,15 @@ class messageViewModel
     self.showConversation = (conversation)->
       self.showingConversation(conversation.id)
 
-    self.hideConversation = ->
+    self.returnList = ->
       self.showingConversation(false)
+      self.showingChannel(false)
+
+    self.showChannel = (ch) ->
+      self.showingChannel(ch.id)
+
+    self.hideChannel = ->
+      self.showingChannel(false)
 
     self.replyInConversation = (reply)->
       index = i for c, i in self.conversations() when c.id == reply.to_id
@@ -88,6 +109,9 @@ class messageViewModel
 
     self.scrollMessageToBottom = (dom) ->
       dom.animate({'scrollTop': dom[0].scrollHeight}, 0)
+
+    self.changeCategory = (cat) ->
+      self.showingCategory(cat.name)
 
     self.init()
 

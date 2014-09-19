@@ -1,0 +1,11 @@
+<!-- ko foreach: channels -->
+<div class="row" data-bind="visible: $root.showingPage() == 'channel-'+id">
+  <div class="col-md-8">
+    <h2 data-bind="text: name"></h2>
+    <%= render 'broadcast_table' %>
+  </div>
+  <div class="col-md-3">
+    <%= render 'new_broadcast_form' %>
+  </div>
+</div>
+<!-- /ko -->

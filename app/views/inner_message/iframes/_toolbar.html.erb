@@ -1,0 +1,12 @@
+<div class="toolbar innerAll">
+  <button class="btn btn-primary" data-bind="click: returnList, visible: showingConversation() || showingChannel()"><i class="fa fa-group"></i></button>
+  <button class="btn btn-close btn-inverse btn-xs" data-bind="click: toggleMessageBox">
+    <i class="fa fa-times"></i>
+  </button>
+  <ul class="categories" data-bind="foreach: notificationCategories, visible: !showingConversation() && !showingChannel()">
+    <li data-bind="click: $root.changeCategory, css: {active: $root.showingCategory() == name}">
+      <i class="fa fa-circle-o fa-fw"></i>
+      <span data-bind="text: name"></span>
+    </li>
+  </ul>
+</div>

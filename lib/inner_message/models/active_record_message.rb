@@ -23,6 +23,6 @@ module InnerMessage
     after_create :publish_message_to_faye
     def publish_message_to_faye
       FayeClient.send(self.from_type.gsub('::', '/') + '/' + self.to.session_key, self.serializable_hash)
-    end    
+    end
   end
 end

@@ -1,9 +1,11 @@
 class adminViewModel
   constructor: ->
     self = this
-    self.showingChannel = ko.observable()
+    self.showingPage = ko.observable('channel-list')
     self.broadcasts = ko.observable([])
     self.channels = ko.observableArray([])
+    self.newChannelName = ko.observable('')
+    self.systemChannel = ko.observable(true)
 
     self.init = ->
       $.getJSON '/inner_message/channels', (channels)->
@@ -12,16 +14,22 @@ class adminViewModel
           self.channels.push channel
           self.getBroadcasts(channel)
 
+    self.newChannel = ->
+      self.showingPage('channel-new')
+
     self.createChannel = (d, e)->
-      name = $(e.currentTarget).siblings('input').val()
-      $.post '/inner_message/channels', { name: name}, (channel)->
+      name = self.newChannelName()
+      $.post '/inner_message/channels', { name: name, system: self.systemChannel() }, (channel)->
         channel['broadcasts'] = ko.observableArray([])
         self.channels.push channel
+        self.showingPage('channel-'+channel.id)
+        self.newChannelName('')
 
     self.createBroadcast = (channel, e)->
-      title = $(e.currentTarget).siblings('input')
-      content = $(e.currentTarget).siblings('textarea')
+      title = $('#br-title-'+channel.id)
+      content = $('#br-content-'+channel.id)
       $.post '/inner_message/broadcasts', broadcast: { title: title.val(), content: content.val(), channel_id: channel.id }, (bc)->
+        bc['read'] = 0
         self.pushBroadcasts bc
         title.val('')
         content.val('')
@@ -36,8 +44,10 @@ class adminViewModel
         self.pushBroadcasts bc for bc in broadcasts
 
     self.showChannel = (channel)->
-      self.showingChannel(channel.id)
+      self.showingPage('channel-'+channel.id)
 
+    self.returnToChannelList = ->
+      self.showingPage('channel-list')
 
     self.init()
 

@@ -15,7 +15,12 @@ module InnerMessage
     test "broadcasts" do
       get :broadcasts, use_route: :inner_message, id: @channel.id
       assert_equal assigns(:broadcasts), [@broadcast]
+      assert_equal assigns(:broadcasts_with_readcount), [@broadcast.serializable_hash.merge({read: 0})]
     end
 
+    test "create system channel" do
+      post :create, use_route: :inner_message, name: 'notification', system: true
+      assert_equal assigns(:channel).type, 'InnerMessage::SystemChannel'
+    end
   end
 end

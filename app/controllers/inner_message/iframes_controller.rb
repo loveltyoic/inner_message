@@ -8,8 +8,8 @@ module InnerMessage
       @faye_server = CONFIG['faye']['server']
     end
 
-    def channels 
-      channels = signed_user.channels
+    def channels
+      channels = Channel.find(signed_user.subscribed_channels)
       @channels = channels.inject([]) do |cs, c|
         cs.push({ id: c.id, name: c.name, broadcasts: signed_user.get_unread_broadcasts_by_channel_id(c.id) })
       end

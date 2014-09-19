@@ -1,0 +1,10 @@
+  <div class="relative-box media border-bottom innerAll margin-none mix_all" data-bind="click: $root.showConversation, visible: !$root.showingConversation()">
+    <a href="#chat-conversation" data-toggle="tab" class="pull-left media-object"><%= image_tag 'inner_message/face.png' %></a>
+    <div class="media-body">
+      <a href="#chat-conversation" data-toggle="tab" class="pull-right text-muted innerT half">
+        <i class="fa fa-comments"></i><span data-bind="text: messages().length"></span>
+      </a>
+      <h5 class="margin-none"><a href="#chat-conversation" data-toggle="tab" class="text-white" data-bind="text: id"></a></h5>
+      <small data-bind="text: messages()[0].content"></small>
+    </div>
+  </div>

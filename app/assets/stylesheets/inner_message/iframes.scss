@@ -314,3 +314,43 @@ small.author {
   right: -250px;
   display: none;
 }
+ul.categories {
+  list-style: none;
+  color: #676767;
+  padding: 10px;
+  li.active {
+    color: white;
+  }
+  li {
+    cursor: pointer;
+    padding: 5px;
+    line-height: 32px;
+    height: 38px;
+    font-weight: 600;
+    span:hover {
+      color: white;
+    }
+  }
+  li:nth-child(1) {
+    i {
+      color: #8bbf61;
+    }
+  }
+  li:nth-child(2) {
+    i {
+      color: #4193d0;
+    }
+  }
+}
+div.categories {
+  height: 90%;
+  .channel .media-body {
+    padding: 0 17px;
+    line-height: 36px;
+    width: 100%;
+  }
+}
+ul.media-list {
+  height: 100%;
+  padding: 22px;
+}

@@ -1,0 +1,5 @@
+<ul class="list-group" data-bind="visible: $root.showingPage() == 'channel-list'">
+<!-- ko foreach: channels -->
+  <li class="list-group-item" data-bind="click: $root.showChannel, text: name"></li>
+<!-- /ko -->
+</ul>

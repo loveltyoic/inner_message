@@ -50,8 +50,7 @@ module InnerMessage
 
     private
     def check_subscription(channel_id)
-      subscription = InnerMessage::Subscription.where({user_id: self.id, channel_id: channel_id}).first
-      if subscription
+      if subscribed_channels.include?(channel_id)
         yield
       else
         nil

@@ -1,0 +1,20 @@
+  <div class="conversation" data-bind="attr: {'id': 'from-'+id}, visible: $root.showingConversation() == id">
+    <div data-bind="foreach: messages" class="messages">
+      <div data-bind="attr: {'id': 'message-'+id}, css: {'from-self': from_id != $parent.id} " class="innerAll relative-box">
+        <div class="media" data-bind="click: $root.markAsRead, css: {'unread': !read}">
+          <small class="author"><a href="#" title="" class="strong" data-bind="text: from_id"></a></small>
+          <div class="media-object"><%= image_tag 'inner_message/face.png', class: "img-circle"%></div>
+          <div class="media-body">
+            <blockquote>
+              <small class="date"><cite data-bind="text: $root.formatTime(created_at)"></cite></small>
+              <p data-bind="text: content"></p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="input-box">
+      <textarea class="form-control" row="3" data-bind="attr: {id: 'reply-'+id}"></textarea>
+      <button class="btn btn-primary" data-bind="click: $root.reply">发送</button>
+    </div>
+  </div>

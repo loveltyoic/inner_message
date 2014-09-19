@@ -7,7 +7,7 @@ module InnerMessage
     validates :content, presence: true
 
     after_create :publish_to_faye
-    after_create :store_id_in_redis
+    after_create :setup_in_redis
 
     scope :recent, ->(count) { order(created_at: :desc).limit(count)}
 
@@ -24,13 +24,14 @@ module InnerMessage
       $inner_redis.get("inner_message:#{self.id}:read_count").to_i
     end
 
-    private 
+    private
     def publish_to_faye
       FayeClient.send('InnerMessage/Channel/'+self.channel_id.to_s, self.serializable_hash)
     end
 
-    def store_id_in_redis
+    def setup_in_redis
       $inner_redis.sadd "inner_message:#{self.channel_id.to_s}:broadcasts", self.id
+      $inner_redis.set "inner_message:#{self.id}:read_count", 0
     end
 
   end

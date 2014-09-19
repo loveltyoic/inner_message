@@ -3,7 +3,7 @@ require_dependency "inner_message/application_controller"
 module InnerMessage
   class ChannelsController < ApplicationController
     def create
-      @channel = Channel.create(name: params[:name])
+      @channel = params[:system] ? SystemChannel.create(name: params[:name]) : Channel.create(name: params[:name])
       render json: @channel
     end
 
@@ -14,7 +14,8 @@ module InnerMessage
 
     def broadcasts
       @broadcasts = Broadcast.where(channel_id: params[:id])
-      render json: @broadcasts
+      @broadcasts_with_readcount = @broadcasts.inject([]) { |brs, br| brs.push br.serializable_hash.merge({read: br.read_count}) }
+      render json: @broadcasts_with_readcount
     end
   end
 end
